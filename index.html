@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>치지직 VOD Downloader</title>
+    <meta name="description" content="치지직 VOD 및 채널 자동 다운로더">
+    <!-- Tailwind CSS (디자인 프레임워크) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome (아이콘) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+        body { font-family: 'Pretendard', sans-serif; }
+        .gradient-text {
+            background: linear-gradient(to right, #3b82f6, #10b981);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-gray-100 antialiased selection:bg-blue-500 selection:text-white">
+
+    <!-- 네비게이션 바 -->
+    <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+        <div class="text-xl font-bold flex items-center gap-2">
+            <i class="fa-solid fa-bolt text-yellow-400"></i>
+            <span>CHZZK <span class="text-blue-500">Downloader</span></span>
+        </div>
+        <div>
+            <!-- 본인 깃허브 주소로 변경하세요 -->
+            <a href="https://github.com/sunglogbag81/Chzzk-VOD-downloader" target="_blank" class="text-gray-400 hover:text-white transition">
+                <i class="fa-brands fa-github text-2xl"></i>
+            </a>
+        </div>
+    </nav>
+
+    <!-- 히어로(메인) 섹션 -->
+    <header class="container mx-auto px-6 py-20 text-center">
+        <h1 class="text-5xl md:text-6xl font-extrabold mb-6 tracking-tight">
+            치지직 VOD 다운로드의 <br class="hidden md:block" />
+            <span class="gradient-text">새로운 기준</span>
+        </h1>
+        <p class="text-lg md:text-xl text-gray-400 mb-10 max-w-2xl mx-auto leading-relaxed">
+            채널 링크 하나로 전체 영상 추출, 원하는 구간만 자르기, 썸네일 자동 삽입까지. 
+            이제 번거로운 과정 없이 클릭 한 번으로 평생 소장하세요.
+        </p>
+        <div class="flex flex-col sm:flex-row justify-center gap-4">
+            <!-- 깃허브 최신 릴리즈 다운로드 링크 -->
+            <a href="https://github.com/sunglogbag81/Chzzk-VOD-downloader/releases/latest" class="px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-lg shadow-lg shadow-blue-500/30 transition transform hover:-translate-y-1 flex items-center justify-center gap-2">
+                <i class="fa-solid fa-download"></i>
+                최신 버전 다운로드 (Windows)
+            </a>
+            <a href="#features" class="px-8 py-4 bg-gray-800 hover:bg-gray-700 text-white font-bold rounded-lg transition flex items-center justify-center gap-2">
+                기능 살펴보기
+            </a>
+        </div>
+        <p class="mt-4 text-sm text-gray-500">최신 버전: v1.0.3 | 무설치 단일 실행 파일(.exe)</p>
+    </header>
+
+    <!-- 주요 기능 섹션 -->
+    <section id="features" class="bg-gray-800/50 py-20">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center mb-16">✨ 주요 기능</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+                
+                <!-- 기능 1 -->
+                <div class="bg-gray-800 p-8 rounded-2xl shadow-lg border border-gray-700 hover:border-blue-500 transition">
+                    <div class="w-14 h-14 bg-blue-500/20 text-blue-400 rounded-xl flex items-center justify-center text-2xl mb-6">
+                        <i class="fa-solid fa-list-ol"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">채널 전체 다운로드</h3>
+                    <p class="text-gray-400 leading-relaxed">스트리머의 채널 링크만 붙여넣으면 모든 VOD를 자동으로 분석하여 대기열에 추가합니다.</p>
+                </div>
+
+                <!-- 기능 2 -->
+                <div class="bg-gray-800 p-8 rounded-2xl shadow-lg border border-gray-700 hover:border-green-500 transition">
+                    <div class="w-14 h-14 bg-green-500/20 text-green-400 rounded-xl flex items-center justify-center text-2xl mb-6">
+                        <i class="fa-solid fa-scissors"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">구간 자르기 (클립)</h3>
+                    <p class="text-gray-400 leading-relaxed">수 시간짜리 영상 전체를 받을 필요 없이, 원하는 하이라이트 시간대만 잘라서 빠르게 다운로드합니다.</p>
+                </div>
+
+                <!-- 기능 3 -->
+                <div class="bg-gray-800 p-8 rounded-2xl shadow-lg border border-gray-700 hover:border-purple-500 transition">
+                    <div class="w-14 h-14 bg-purple-500/20 text-purple-400 rounded-xl flex items-center justify-center text-2xl mb-6">
+                        <i class="fa-solid fa-image"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">메타데이터 & 썸네일</h3>
+                    <p class="text-gray-400 leading-relaxed">다운로드된 MP4/MKV 파일 안에 치지직 원본 썸네일과 방송 제목, 채널 정보를 영구적으로 삽입합니다.</p>
+                </div>
+
+                <!-- 기능 4 -->
+                <div class="bg-gray-800 p-8 rounded-2xl shadow-lg border border-gray-700 hover:border-yellow-500 transition">
+                    <div class="w-14 h-14 bg-yellow-500/20 text-yellow-400 rounded-xl flex items-center justify-center text-2xl mb-6">
+                        <i class="fa-solid fa-rotate"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">스마트 자동 업데이트</h3>
+                    <p class="text-gray-400 leading-relaxed">프로그램을 실행할 때마다 최신 버전을 확인하고, 클릭 한 번으로 자체 업데이트 후 재시작합니다.</p>
+                </div>
+
+                <!-- 기능 5 -->
+                <div class="bg-gray-800 p-8 rounded-2xl shadow-lg border border-gray-700 hover:border-red-500 transition">
+                    <div class="w-14 h-14 bg-red-500/20 text-red-400 rounded-xl flex items-center justify-center text-2xl mb-6">
+                        <i class="fa-solid fa-film"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">최고 화질 & 포맷 선택</h3>
+                    <p class="text-gray-400 leading-relaxed">1080p 60fps 원본 화질 다운로드를 지원하며, 취향에 따라 MP4 또는 MKV 포맷을 선택할 수 있습니다.</p>
+                </div>
+
+                <!-- 기능 6 -->
+                <div class="bg-gray-800 p-8 rounded-2xl shadow-lg border border-gray-700 hover:border-pink-500 transition">
+                    <div class="w-14 h-14 bg-pink-500/20 text-pink-400 rounded-xl flex items-center justify-center text-2xl mb-6">
+                        <i class="fa-solid fa-floppy-disk"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">개인 설정 기억</h3>
+                    <p class="text-gray-400 leading-relaxed">자주 사용하는 저장 폴더나 포맷 설정을 기억해두어 앱을 켤 때마다 다시 설정할 필요가 없습니다.</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 푸터 -->
+    <footer class="container mx-auto px-6 py-8 text-center text-gray-500 border-t border-gray-800 mt-10">
+        <p class="mb-2">본 프로그램은 네이버 치지직(CHZZK)의 공식 프로그램이 아니며, 다운로드한 영상의 저작권 및 사용 책임은 사용자에게 있습니다.</p>
+        <p>© 2026 Developed by <a href="https://github.com/sunglogbag81" target="_blank" class="text-blue-400 hover:underline">감파르다</a>. Powered by yt-dlp & CustomTkinter.</p>
+    </footer>
+
+</body>
+</html>
