@@ -83,7 +83,7 @@
     <!-- 메인 헤더 (히어로 섹션) -->
     <header class="container mx-auto px-6 pt-24 pb-20 text-center relative z-10">
         <div class="inline-block mb-4 px-4 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-sm font-bold tracking-wide">
-            현재 최신 버전 : v1.0.4
+            현재 최신 버전 : v1.1.0
         </div>
         <h1 class="text-5xl md:text-7xl font-extrabold mb-8 tracking-tighter leading-tight">
             치지직 VOD 영상을 <br class="hidden md:block">
@@ -283,22 +283,43 @@
             <!-- 타임라인 컨테이너 -->
             <div class="bg-gray-900/80 rounded-2xl border border-gray-700 p-6 md:p-8 h-[500px] overflow-y-auto custom-scrollbar shadow-inner">
                 
-                <!-- v1.0.4 -->
+                <!-- v1.1.0 -->
                 <div class="mb-10 relative pl-8 border-l-2 border-blue-500/30">
                     <div class="absolute w-4 h-4 bg-blue-500 rounded-full -left-[9px] top-1 shadow-[0_0_10px_rgba(59,130,246,0.8)]"></div>
-                    <h3 class="text-2xl font-bold text-gray-100 mb-1">v1.0.4 <span class="text-sm font-mono text-blue-400 ml-2 border border-blue-500/30 px-2 py-0.5 rounded bg-blue-500/10">Latest</span></h3>
-                    <p class="text-gray-500 text-sm mb-4 font-mono">2026-02-22</p>
+                    <h3 class="text-2xl font-bold text-gray-100 mb-1">v1.1.0 <span class="text-sm font-mono text-blue-400 ml-2 border border-blue-500/30 px-2 py-0.5 rounded bg-blue-500/10">Latest</span></h3>
+                    <p class="text-gray-500 text-sm mb-4 font-mono">2026-02-23 배포</p>
                     <ul class="space-y-3 text-gray-300 text-sm">
                         <li class="flex items-start gap-2">
-                            <i class="fa-solid fa-shield-halved text-blue-500 mt-1"></i>
+                            <i class="fa-solid fa-paintbrush text-blue-500 mt-1"></i>
+                            <span><strong>모던 다크 그레이 UI 전면 개편</strong>: 기존의 답답했던 UI를 버리고 세련된 대시보드 형태의 2단 분할 레이아웃과 직관적인 토글 스위치를 적용했습니다.</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <i class="fa-solid fa-tv text-green-500 mt-1"></i>
+                            <span><strong>화질 및 포맷 선택 지원</strong>: 최고 화질부터 1080p, 720p, 480p, 360p 해상도 선택이 가능하며, <strong>오디오만(MP3) 추출</strong> 기능이 추가되었습니다.</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <i class="fa-solid fa-bug-slash text-red-500 mt-1"></i>
+                            <span><strong>자동 업데이트 오류 해결</strong>: 업데이트 진행 후 간헐적으로 발생하던 <code>Failed to load Python DLL _MEI</code> 튕김 버그를 완벽하게 수정했습니다.</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- v1.0.4 -->
+                <div class="mb-10 relative pl-8 border-l-2 border-gray-700">
+                    <div class="absolute w-4 h-4 bg-gray-600 rounded-full -left-[9px] top-1"></div>
+                    <h3 class="text-xl font-bold text-gray-300 mb-1">v1.0.4</h3>
+                    <p class="text-gray-500 text-sm mb-4 font-mono">2026-02-22 배포</p>
+                    <ul class="space-y-3 text-gray-400 text-sm">
+                        <li class="flex items-start gap-2">
+                            <i class="fa-solid fa-shield-halved text-gray-500 mt-1"></i>
                             <span><strong>백신 오진율 대폭 감소</strong>: PyInstaller 빌드 시 단일 폴더 옵션과 UPX 압축 해제를 적용하여 악성코드 오진 문제를 획기적으로 개선했습니다.</span>
                         </li>
                         <li class="flex items-start gap-2">
-                            <i class="fa-solid fa-arrow-up text-green-500 mt-1"></i>
+                            <i class="fa-solid fa-arrow-up text-gray-500 mt-1"></i>
                             <span><strong>yt-dlp 엔진 최신화</strong>: 다운로드 코어 엔진을 최신 버전으로 업데이트하여 일부 영상 다운로드 불가 현상을 수정했습니다.</span>
                         </li>
                         <li class="flex items-start gap-2">
-                            <i class="fa-solid fa-lock text-yellow-500 mt-1"></i>
+                            <i class="fa-solid fa-lock text-gray-500 mt-1"></i>
                             <span><strong>클립(Clip) 다운로드 차단 유지</strong>: 현재 치지직 API 구조상 클립 영상 다운로드 시 발생하는 오류를 방지하기 위해 당분간 클립 주소 입력 제한을 유지합니다.</span>
                         </li>
                     </ul>
@@ -311,19 +332,19 @@
                     <p class="text-gray-500 text-sm mb-4 font-mono">2026-02-22 배포</p>
                     <ul class="space-y-3 text-gray-400 text-sm">
                         <li class="flex items-start gap-2">
-                            <i class="fa-solid fa-check text-green-500 mt-1"></i>
+                            <i class="fa-solid fa-check text-gray-500 mt-1"></i>
                             <span><strong>다운로드 엔진 교체</strong>: 기존 자체 구현 방식에서, 유튜브 및 치지직 다운로드의 표준으로 불리는 안정적인 `yt-dlp` 엔진으로 전면 교체했습니다.</span>
                         </li>
                         <li class="flex items-start gap-2">
-                            <i class="fa-solid fa-check text-green-500 mt-1"></i>
+                            <i class="fa-solid fa-check text-gray-500 mt-1"></i>
                             <span><strong>실시간 진행률 표시 완벽 호환</strong>: `yt-dlp` 엔진 출력값을 정규식으로 파싱하여 프로그레스 바가 부드럽게 차오르도록 수정했습니다.</span>
                         </li>
                         <li class="flex items-start gap-2">
-                            <i class="fa-solid fa-check text-green-500 mt-1"></i>
+                            <i class="fa-solid fa-check text-gray-500 mt-1"></i>
                             <span><strong>자동 업데이트 기능 추가</strong>: 프로그램 실행 시 깃허브 버전을 체크하고 클릭 한 번에 새 버전을 적용하는 로직 및 전용 UI를 구축했습니다.</span>
                         </li>
                         <li class="flex items-start gap-2">
-                            <i class="fa-solid fa-wrench text-yellow-500 mt-1"></i>
+                            <i class="fa-solid fa-wrench text-gray-500 mt-1"></i>
                             <span>치지직의 Clip 영상은 API 구조 한계로 당분간 지원하지 않도록 예외 처리했습니다.</span>
                         </li>
                     </ul>
@@ -336,11 +357,11 @@
                     <p class="text-gray-500 text-sm mb-4 font-mono">2026-02-21 배포</p>
                     <ul class="space-y-3 text-gray-400 text-sm">
                         <li class="flex items-start gap-2">
-                            <i class="fa-solid fa-wrench text-yellow-500 mt-1"></i>
+                            <i class="fa-solid fa-wrench text-gray-500 mt-1"></i>
                             <span>일부 윈도우 환경에서 PyInstaller 빌드 파일 실행 시 <strong>'Failed to load Python DLL _MEI'</strong> 오류가 뜨던 고질적인 현상을 방어 코드로 수정했습니다.</span>
                         </li>
                         <li class="flex items-start gap-2">
-                            <i class="fa-solid fa-wrench text-yellow-500 mt-1"></i>
+                            <i class="fa-solid fa-wrench text-gray-500 mt-1"></i>
                             <span>MKV 및 MP4 포맷 변환 시 간헐적으로 영상 씽크가 어긋나는 문제를 <code>--remux-video</code> 옵션 적용을 통해 수정했습니다.</span>
                         </li>
                     </ul>
@@ -353,11 +374,11 @@
                     <p class="text-gray-500 text-sm mb-4 font-mono">2026-02-20 배포</p>
                     <ul class="space-y-3 text-gray-400 text-sm">
                         <li class="flex items-start gap-2">
-                            <i class="fa-solid fa-check text-green-500 mt-1"></i>
+                            <i class="fa-solid fa-check text-gray-500 mt-1"></i>
                             <span><strong>채널 주소 입력 지원</strong>: 단일 영상 주소뿐만 아니라 채널 주소 입력 시, 해당 스트리머의 모든 VOD를 긁어오도록 파싱 로직을 강화했습니다.</span>
                         </li>
                         <li class="flex items-start gap-2">
-                            <i class="fa-solid fa-check text-green-500 mt-1"></i>
+                            <i class="fa-solid fa-check text-gray-500 mt-1"></i>
                             <span><strong>설정 자동 저장 기능</strong>: 사용자가 마지막으로 지정했던 저장 폴더, 화질, 쿠키 옵션을 JSON 파일로 저장하고 다음 실행 시 불러오도록 개선했습니다.</span>
                         </li>
                     </ul>
@@ -370,7 +391,7 @@
                     <p class="text-gray-500 text-sm mb-4 font-mono">2026-02-18 배포</p>
                     <ul class="space-y-3 text-gray-400 text-sm">
                         <li class="flex items-start gap-2">
-                            <i class="fa-solid fa-rocket text-purple-500 mt-1"></i>
+                            <i class="fa-solid fa-rocket text-gray-500 mt-1"></i>
                             <span>치지직 VOD 다운로더 첫 버전 릴리즈 (CustomTkinter 기반 GUI 적용)</span>
                         </li>
                     </ul>
