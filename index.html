@@ -2,16 +2,21 @@
 <html lang="ko" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>치지직 VOD Downloader - 초고속 고화질 영상 추출기</title>
-    <meta name="description" content="네이버 치지직(CHZZK) VOD 및 다시보기 영상을 최고 화질로 다운로드하세요. 직관적인 UI, 구간 다운로드, 자동 업데이트 기능까지 완벽 지원합니다.">
+    
+    <!-- 구글 검색용 메타 태그 -->
+    <meta name="description" content="네이버 치지직(CHZZK) VOD 및 다시보기 영상을 1080p 최고 화질로 다운로드하세요. 설치 없는 단일 exe 파일로 무료 제공됩니다.">
     <meta name="keywords" content="치지직, 치지직 다운로드, 치지직 VOD, 치지직 다시보기 다운, chzzk downloader, 네이버 치지직 다운로더">
-    <meta name="google-site-verification" content="6oXTJ4XZhHmDvJODu_T3rdXfJl29Yroy10d0lld6WRc" />
-
+    
+    <!-- 카카오톡, 디스코드 공유 시 표시되는 Open Graph 메타 태그 -->
     <meta property="og:type" content="website">
     <meta property="og:title" content="치지직 VOD Downloader">
     <meta property="og:description" content="가장 완벽한 치지직 다시보기 다운로더. 설치 없이 1080p 60fps 초고화질 영상을 소장하세요.">
     <meta property="og:url" content="https://sunglogbag81.github.io/Chzzk-VOD-downloader/">
+    <!-- 썸네일 이미지 주소를 아래에 넣으시면 됩니다 -->
+    <!-- <meta property="og:image" content="이미지주소"> -->
+    
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
@@ -29,15 +34,18 @@
             background-color: #0b1120;
             color: #f8fafc;
             overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
         }
 
-        /* 배경 그라데이션 오라 효과 */
+        /* 배경 그라데이션 오라 효과 (모바일 대응) */
         .bg-glow {
             position: absolute;
-            width: 800px;
-            height: 800px;
+            width: 150vw;
+            max-width: 800px;
+            height: 150vw;
+            max-height: 800px;
             background: radial-gradient(circle, rgba(37, 99, 235, 0.15) 0%, rgba(15, 23, 42, 0) 60%);
-            top: -200px;
+            top: -100px;
             left: 50%;
             transform: translateX(-50%);
             z-index: 0;
@@ -79,13 +87,13 @@
 
         @keyframes float {
             0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-15px); }
+            50% { transform: translateY(-12px); }
         }
 
         /* 스크롤바 */
-        .custom-scrollbar::-webkit-scrollbar { width: 8px; }
+        .custom-scrollbar::-webkit-scrollbar { width: 6px; md:width: 8px; }
         .custom-scrollbar::-webkit-scrollbar-track { background: #0f172a; border-radius: 4px; }
-        .custom-scrollbar::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; border: 2px solid #0f172a; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
         .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #475569; }
 
         /* 글래스모피즘 카드 */
@@ -99,14 +107,14 @@
 
         .glass-card:hover {
             border-color: rgba(255, 255, 255, 0.15);
-            transform: translateY(-5px);
+            transform: translateY(-4px);
             background: rgba(30, 41, 59, 0.8);
         }
 
-        /* 스크롤 페이드 인 애니메이션 (JS 연동) */
+        /* 스크롤 페이드 인 애니메이션 */
         .reveal {
             opacity: 0;
-            transform: translateY(30px);
+            transform: translateY(20px);
             transition: all 0.8s ease-out;
         }
         .reveal.active {
@@ -122,15 +130,15 @@
         @keyframes blink { 50% { opacity: 0; } }
     </style>
 </head>
-<body class="antialiased selection:bg-blue-500 selection:text-white relative">
+<body class="selection:bg-blue-500 selection:text-white relative">
 
     <div class="bg-glow"></div>
 
     <!-- 네비게이션 바 -->
-    <nav class="container mx-auto px-6 py-5 flex justify-between items-center relative z-50 border-b border-white/5 bg-[#0b1121]/80 backdrop-blur-lg sticky top-0">
-        <div class="text-2xl font-black flex items-center gap-3 tracking-tight cursor-pointer" onclick="window.scrollTo(0,0)">
-            <div class="bg-gradient-to-br from-blue-500 to-emerald-500 w-10 h-10 rounded-xl flex items-center justify-center shadow-[0_0_15px_rgba(59,130,246,0.4)]">
-                <i class="fa-solid fa-bolt text-white"></i>
+    <nav class="container mx-auto px-5 md:px-6 py-4 flex justify-between items-center relative z-50 border-b border-white/5 bg-[#0b1121]/80 backdrop-blur-lg sticky top-0">
+        <div class="text-xl md:text-2xl font-black flex items-center gap-2 md:gap-3 tracking-tight cursor-pointer" onclick="window.scrollTo(0,0)">
+            <div class="bg-gradient-to-br from-blue-500 to-emerald-500 w-8 h-8 md:w-10 md:h-10 rounded-lg md:rounded-xl flex items-center justify-center shadow-[0_0_15px_rgba(59,130,246,0.4)]">
+                <i class="fa-solid fa-bolt text-white text-sm md:text-base"></i>
             </div>
             <span>CHZZK <span class="text-slate-400 font-light hidden sm:inline">Downloader</span></span>
         </div>
@@ -149,99 +157,103 @@
         </a>
 
         <!-- 모바일 메뉴 버튼 -->
-        <button id="mobile-menu-btn" class="lg:hidden text-2xl text-slate-300 hover:text-white focus:outline-none">
+        <button id="mobile-menu-btn" class="lg:hidden text-2xl text-slate-300 hover:text-white focus:outline-none p-2 -mr-2">
             <i class="fa-solid fa-bars"></i>
         </button>
     </nav>
 
     <!-- 모바일 드롭다운 메뉴 -->
     <div id="mobile-menu" class="fixed inset-0 bg-[#0b1121]/95 backdrop-blur-xl z-40 hidden flex-col items-center justify-center gap-8 text-xl font-bold">
-        <button id="close-menu-btn" class="absolute top-6 right-6 text-3xl text-slate-400 hover:text-white">
+        <button id="close-menu-btn" class="absolute top-6 right-6 text-4xl text-slate-400 hover:text-white p-2">
             <i class="fa-solid fa-xmark"></i>
         </button>
-        <a href="#how-to-use" class="mobile-link text-slate-300 hover:text-white">사용 방법</a>
-        <a href="#features" class="mobile-link text-slate-300 hover:text-white">주요 기능</a>
-        <a href="#faq" class="mobile-link text-slate-300 hover:text-white">자주 묻는 질문</a>
-        <a href="#changelog" class="mobile-link text-slate-300 hover:text-white">패치노트</a>
-        <a href="https://github.com/sunglogbag81/Chzzk-VOD-downloader" class="mobile-link text-blue-400 mt-4"><i class="fa-brands fa-github mr-2"></i>GitHub 방문</a>
+        <a href="#how-to-use" class="mobile-link text-slate-300 hover:text-white py-2">사용 방법</a>
+        <a href="#features" class="mobile-link text-slate-300 hover:text-white py-2">주요 기능</a>
+        <a href="#faq" class="mobile-link text-slate-300 hover:text-white py-2">자주 묻는 질문</a>
+        <a href="#changelog" class="mobile-link text-slate-300 hover:text-white py-2">패치노트</a>
+        <a href="https://github.com/sunglogbag81/Chzzk-VOD-downloader" class="mobile-link text-blue-400 mt-4 py-2"><i class="fa-brands fa-github mr-2"></i>GitHub 방문</a>
     </div>
 
     <!-- 메인 헤더 (히어로 섹션) -->
-    <header class="container mx-auto px-6 pt-24 pb-20 text-center relative z-10">
-        <div class="flex flex-wrap justify-center gap-3 mb-8 reveal">
-            <span class="px-4 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/30 text-blue-400 text-xs font-bold tracking-wide flex items-center gap-2 shadow-[0_0_10px_rgba(59,130,246,0.2)]">
-                <span class="w-2 h-2 rounded-full bg-blue-500 animate-pulse"></span> 현재 최신 버전 : v1.1.0
+    <header class="container mx-auto px-5 md:px-6 pt-16 md:pt-24 pb-16 md:pb-20 text-center relative z-10">
+        <div class="flex flex-wrap justify-center gap-2 md:gap-3 mb-6 md:mb-8 reveal">
+            <span class="px-3 md:px-4 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/30 text-blue-400 text-[11px] md:text-xs font-bold tracking-wide flex items-center gap-2 shadow-[0_0_10px_rgba(59,130,246,0.2)]">
+                <span class="w-1.5 h-1.5 md:w-2 md:h-2 rounded-full bg-blue-500 animate-pulse"></span> 현재 최신 버전 : v1.1.0
             </span>
-            <span class="px-4 py-1.5 rounded-full bg-slate-800 border border-slate-700 text-emerald-400 text-xs font-bold tracking-wide hidden sm:flex items-center gap-1.5">
+            <span class="px-3 md:px-4 py-1.5 rounded-full bg-slate-800 border border-slate-700 text-emerald-400 text-[11px] md:text-xs font-bold tracking-wide flex items-center gap-1.5">
                 <i class="fa-solid fa-check"></i> 완전 무료 & 오픈소스
             </span>
         </div>
 
-        <h1 class="text-5xl md:text-7xl font-extrabold mb-6 tracking-tighter leading-tight reveal" style="transition-delay: 100ms;">
-            치지직 VOD 영상을 <br class="hidden md:block">
+        <h1 class="text-4xl sm:text-5xl md:text-7xl font-extrabold mb-5 md:mb-6 tracking-tighter leading-tight reveal" style="transition-delay: 100ms;">
+            치지직 VOD 영상을 <br class="hidden sm:block">
             <span id="typing-text" class="gradient-text typing-cursor">내 PC로 평생 소장하세요</span>
         </h1>
-        <p class="text-lg md:text-xl text-slate-400 mb-10 max-w-2xl mx-auto leading-relaxed font-light reveal" style="transition-delay: 200ms;">
+        <p class="text-base sm:text-lg md:text-xl text-slate-400 mb-8 md:mb-10 max-w-2xl mx-auto leading-relaxed font-light reveal px-2" style="transition-delay: 200ms;">
             복잡한 파이썬 설치나 코딩 지식은 전혀 필요 없습니다.<br class="hidden sm:block">
             독립 실행 파일(.exe) 하나로 클릭 몇 번이면 초고화질 영상 추출이 완료됩니다.
         </p>
         
-        <div class="flex flex-col sm:flex-row justify-center gap-4 mb-16 reveal" style="transition-delay: 300ms;">
-            <!-- 📌 EXE 즉시 다운로드 직통 링크 -->
-            <a href="https://github.com/sunglogbag81/Chzzk-VOD-downloader/releases/latest/download/chzzk.exe" class="btn-gradient px-8 py-4 text-white font-bold rounded-xl flex items-center justify-center gap-3 text-lg group w-full sm:w-auto">
-                <i class="fa-brands fa-windows text-xl"></i> 
+        <div class="flex flex-col sm:flex-row justify-center gap-3 md:gap-4 mb-14 md:mb-16 reveal" style="transition-delay: 300ms;">
+            <!-- EXE 다운로드 직통 링크 -->
+            <a href="https://github.com/sunglogbag81/Chzzk-VOD-downloader/releases/latest/download/chzzk.exe" class="btn-gradient px-6 py-4 md:px-8 md:py-4 text-white font-bold rounded-xl flex items-center justify-center gap-2 md:gap-3 text-base md:text-lg group w-full sm:w-auto">
+                <i class="fa-brands fa-windows text-lg md:text-xl"></i> 
                 <span>즉시 다운로드 <span class="text-sm font-normal opacity-80">(.exe)</span></span>
                 <i class="fa-solid fa-arrow-down ml-1 group-hover:translate-y-1 transition duration-300"></i>
             </a>
-            <a href="#how-to-use" class="px-8 py-4 bg-slate-800/80 hover:bg-slate-700 text-white font-bold rounded-xl border border-slate-600 transition flex items-center justify-center gap-2 text-lg backdrop-blur-md w-full sm:w-auto">
+            <a href="#how-to-use" class="px-6 py-4 md:px-8 md:py-4 bg-slate-800/80 hover:bg-slate-700 text-white font-bold rounded-xl border border-slate-600 transition flex items-center justify-center gap-2 text-base md:text-lg backdrop-blur-md w-full sm:w-auto">
                 <i class="fa-solid fa-compass"></i> 사용법 알아보기
             </a>
         </div>
 
-        <!-- CSS UI 목업 -->
+        <!-- CSS UI 목업 (모바일 대응) -->
         <div class="max-w-4xl mx-auto relative float-anim reveal" style="transition-delay: 400ms;">
-            <div class="absolute -inset-1 bg-gradient-to-r from-blue-500 to-emerald-500 rounded-2xl blur opacity-20"></div>
-            <div class="relative bg-[#121212] rounded-2xl border border-slate-700 shadow-2xl overflow-hidden text-left ring-1 ring-white/10">
+            <div class="absolute -inset-1 bg-gradient-to-r from-blue-500 to-emerald-500 rounded-xl md:rounded-2xl blur opacity-20"></div>
+            <div class="relative bg-[#121212] rounded-xl md:rounded-2xl border border-slate-700 shadow-2xl overflow-hidden text-left ring-1 ring-white/10">
                 <!-- 목업 타이틀바 -->
-                <div class="bg-[#1e1e1e] px-4 py-3 border-b border-slate-800 flex items-center gap-2">
-                    <div class="flex gap-1.5 mr-3">
-                        <div class="w-3 h-3 rounded-full bg-red-500/80"></div>
-                        <div class="w-3 h-3 rounded-full bg-yellow-500/80"></div>
-                        <div class="w-3 h-3 rounded-full bg-green-500/80"></div>
+                <div class="bg-[#1e1e1e] px-3 md:px-4 py-2 md:py-3 border-b border-slate-800 flex items-center gap-2">
+                    <div class="flex gap-1.5 mr-2 md:mr-3">
+                        <div class="w-2.5 h-2.5 md:w-3 md:h-3 rounded-full bg-red-500/80"></div>
+                        <div class="w-2.5 h-2.5 md:w-3 md:h-3 rounded-full bg-yellow-500/80"></div>
+                        <div class="w-2.5 h-2.5 md:w-3 md:h-3 rounded-full bg-green-500/80"></div>
                     </div>
-                    <span class="text-xs font-bold text-slate-300 tracking-wider">⚡ CHZZK VOD DOWNLOADER <span class="text-slate-500 font-mono">v1.1.0</span></span>
+                    <span class="text-[10px] md:text-xs font-bold text-slate-300 tracking-wider truncate">⚡ CHZZK VOD DOWNLOADER <span class="text-slate-500 font-mono hidden sm:inline">v1.1.0</span></span>
                 </div>
                 <!-- 목업 바디 -->
-                <div class="p-6 grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <div class="md:col-span-1 space-y-4">
-                        <div class="h-10 bg-[#2d2d2d] rounded-lg border border-[#4b5563] w-full flex items-center px-4 shadow-inner">
-                            <span class="text-[#f3f4f6] text-sm"><i class="fa-solid fa-link text-slate-400 mr-2"></i> https://chzzk...</span>
+                <div class="p-4 md:p-6 grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
+                    <div class="md:col-span-1 space-y-3 md:space-y-4">
+                        <div class="h-9 md:h-10 bg-[#2d2d2d] rounded-lg border border-[#4b5563] w-full flex items-center px-3 md:px-4 shadow-inner overflow-hidden">
+                            <span class="text-[#f3f4f6] text-xs md:text-sm truncate"><i class="fa-solid fa-link text-slate-400 mr-2"></i>https://chzzk.naver.com...</span>
                         </div>
-                        <div class="h-48 bg-[#1e1e1e] rounded-xl border border-[#333] w-full p-4 flex flex-col">
-                            <span class="text-sm text-slate-300 font-bold mb-3">📋 대기열: 1개</span>
-                            <div class="bg-[#2d2d2d] p-3 rounded-lg flex justify-between items-center border border-slate-700">
-                                <span class="text-sm text-slate-200 truncate"><i class="fa-solid fa-video text-emerald-400 mr-2"></i>방송 다시보기...</span>
-                                <i class="fa-solid fa-xmark text-red-400"></i>
+                        <div class="h-32 md:h-48 bg-[#1e1e1e] rounded-lg md:rounded-xl border border-[#333] w-full p-3 md:p-4 flex flex-col">
+                            <span class="text-xs md:text-sm text-slate-300 font-bold mb-2 md:mb-3">📋 대기열: 1개</span>
+                            <div class="bg-[#2d2d2d] p-2.5 md:p-3 rounded-md md:rounded-lg flex justify-between items-center border border-slate-700">
+                                <span class="text-xs md:text-sm text-slate-200 truncate pr-2"><i class="fa-solid fa-video text-emerald-400 mr-2"></i>방송 다시보기 원본...</span>
+                                <i class="fa-solid fa-xmark text-red-400 text-xs md:text-sm shrink-0"></i>
                             </div>
                         </div>
                     </div>
-                    <div class="md:col-span-2 space-y-4">
-                        <div class="h-32 bg-[#1e1e1e] rounded-xl border border-[#333] w-full p-5 space-y-4">
-                            <span class="text-sm text-slate-300 font-bold block"><i class="fa-solid fa-gear text-slate-400 mr-2"></i>다운로드 설정</span>
-                            <div class="flex gap-3">
-                                <div class="h-9 w-full bg-[#2d2d2d] rounded border border-slate-700 flex items-center px-3 text-xs text-slate-400">C:\Downloads</div>
-                                <div class="h-9 w-24 bg-[#374151] rounded border border-slate-600 flex items-center justify-center text-xs font-bold text-white shadow-sm">찾기</div>
+                    <div class="md:col-span-2 space-y-3 md:space-y-4">
+                        <div class="bg-[#1e1e1e] rounded-lg md:rounded-xl border border-[#333] w-full p-3.5 md:p-5 space-y-3 md:space-y-4">
+                            <span class="text-xs md:text-sm text-slate-300 font-bold block"><i class="fa-solid fa-gear text-slate-400 mr-2"></i>다운로드 설정</span>
+                            <div class="flex gap-2 md:gap-3">
+                                <div class="h-8 md:h-9 w-full bg-[#2d2d2d] rounded border border-slate-700 flex items-center px-2.5 md:px-3 text-[10px] md:text-xs text-slate-400 truncate">C:\Downloads</div>
+                                <div class="h-8 md:h-9 w-16 md:w-24 bg-[#374151] rounded border border-slate-600 flex items-center justify-center text-[10px] md:text-xs font-bold text-white shrink-0">찾기</div>
                             </div>
-                            <div class="flex gap-3">
-                                <div class="h-9 w-1/2 bg-[#2d2d2d] rounded border border-slate-700 flex items-center justify-between px-3 text-xs text-slate-200">최고 화질 (1080p) <i class="fa-solid fa-chevron-down"></i></div>
-                                <div class="h-9 w-1/4 bg-[#2d2d2d] rounded border border-slate-700 flex items-center justify-between px-3 text-xs text-slate-200">MP4 <i class="fa-solid fa-chevron-down"></i></div>
+                            <div class="flex gap-2 md:gap-3">
+                                <div class="h-8 md:h-9 w-[65%] bg-[#2d2d2d] rounded border border-slate-700 flex items-center justify-between px-2.5 md:px-3 text-[10px] md:text-xs text-slate-200">
+                                    <span class="truncate">최고 화질 (1080p)</span> <i class="fa-solid fa-chevron-down ml-1 shrink-0"></i>
+                                </div>
+                                <div class="h-8 md:h-9 w-[35%] bg-[#2d2d2d] rounded border border-slate-700 flex items-center justify-between px-2.5 md:px-3 text-[10px] md:text-xs text-slate-200">
+                                    <span>MP4</span> <i class="fa-solid fa-chevron-down shrink-0"></i>
+                                </div>
                             </div>
                         </div>
-                        <div class="h-20 bg-[#1e1e1e] rounded-xl border border-[#333] w-full p-5 flex flex-col justify-center">
-                            <div class="flex justify-between text-sm mb-2 font-bold">
+                        <div class="h-16 md:h-20 bg-[#1e1e1e] rounded-lg md:rounded-xl border border-[#333] w-full p-3.5 md:p-5 flex flex-col justify-center">
+                            <div class="flex justify-between text-[11px] md:text-sm mb-2 font-bold">
                                 <span class="text-[#10b981]">다운로드 중... 68.5%</span>
                             </div>
-                            <div class="h-2.5 w-full bg-[#374151] rounded-full overflow-hidden">
+                            <div class="h-2 md:h-2.5 w-full bg-[#374151] rounded-full overflow-hidden">
                                 <div class="h-full bg-[#10b981] w-[68.5%] rounded-full shadow-[0_0_8px_#10b981]"></div>
                             </div>
                         </div>
@@ -252,134 +264,134 @@
     </header>
 
     <!-- 스펙 요약 스트립 -->
-    <div class="border-y border-white/5 bg-[#0f172a]/80 backdrop-blur-md py-8 relative z-10">
-        <div class="container mx-auto px-6 max-w-5xl flex flex-wrap justify-center gap-8 md:gap-24 text-center">
-            <div class="reveal">
-                <div class="text-3xl font-black text-white mb-1">1080p 60f</div>
-                <div class="text-sm text-slate-400 font-bold tracking-wide">무손실 초고해상도</div>
+    <div class="border-y border-white/5 bg-[#0f172a]/80 backdrop-blur-md py-6 md:py-8 relative z-10">
+        <div class="container mx-auto px-4 flex flex-wrap justify-center gap-6 md:gap-24 text-center">
+            <div class="reveal w-[40%] md:w-auto">
+                <div class="text-2xl md:text-3xl font-black text-white mb-0.5 md:mb-1">1080p 60f</div>
+                <div class="text-xs md:text-sm text-slate-400 font-bold tracking-wide">초고해상도</div>
             </div>
-            <div class="reveal" style="transition-delay: 100ms;">
-                <div class="text-3xl font-black text-white mb-1">MP4/MKV</div>
-                <div class="text-sm text-slate-400 font-bold tracking-wide">완벽한 병합 지원</div>
+            <div class="reveal w-[40%] md:w-auto" style="transition-delay: 100ms;">
+                <div class="text-2xl md:text-3xl font-black text-white mb-0.5 md:mb-1">MP4/MKV</div>
+                <div class="text-xs md:text-sm text-slate-400 font-bold tracking-wide">완벽한 병합</div>
             </div>
-            <div class="reveal" style="transition-delay: 200ms;">
-                <div class="text-3xl font-black text-white mb-1"><i class="fa-solid fa-bolt text-yellow-400"></i> yt-dlp</div>
-                <div class="text-sm text-slate-400 font-bold tracking-wide">안정적 코어 엔진 탑재</div>
+            <div class="reveal w-[40%] md:w-auto mt-2 md:mt-0" style="transition-delay: 200ms;">
+                <div class="text-2xl md:text-3xl font-black text-white mb-0.5 md:mb-1"><i class="fa-solid fa-bolt text-yellow-400 text-xl"></i> yt-dlp</div>
+                <div class="text-xs md:text-sm text-slate-400 font-bold tracking-wide">안정적 엔진</div>
             </div>
         </div>
     </div>
 
     <!-- 사용 방법 섹션 -->
-    <section id="how-to-use" class="py-24 relative z-10">
-        <div class="container mx-auto px-6 max-w-5xl">
-            <div class="text-center mb-16 reveal">
-                <span class="text-blue-500 font-black tracking-widest text-xs uppercase bg-blue-500/10 px-3 py-1 rounded-full">Tutorial</span>
-                <h2 class="text-3xl md:text-4xl font-extrabold mt-4 mb-4">단 3단계, 10초면 충분합니다</h2>
-                <p class="text-slate-400">설명서조차 필요 없는 가장 직관적인 UI를 경험하세요.</p>
+    <section id="how-to-use" class="py-16 md:py-24 relative z-10">
+        <div class="container mx-auto px-5 md:px-6 max-w-5xl">
+            <div class="text-center mb-12 md:mb-16 reveal">
+                <span class="text-blue-500 font-black tracking-widest text-[10px] md:text-xs uppercase bg-blue-500/10 px-3 py-1 rounded-full">Tutorial</span>
+                <h2 class="text-2xl sm:text-3xl md:text-4xl font-extrabold mt-3 md:mt-4 mb-3 md:mb-4">단 3단계, 10초면 충분합니다</h2>
+                <p class="text-sm md:text-base text-slate-400 px-4">설명서조차 필요 없는 가장 직관적인 UI를 경험하세요.</p>
             </div>
             
-            <div class="flex flex-col md:flex-row justify-between items-center gap-6 md:gap-4 relative">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-4 md:gap-4 relative">
                 <!-- Step 1 -->
-                <div class="glass-card flex-1 text-center p-8 md:p-6 lg:p-8 rounded-2xl w-full reveal">
-                    <div class="w-16 h-16 bg-blue-500/10 text-blue-400 rounded-2xl flex items-center justify-center text-2xl font-bold mx-auto mb-6 shadow-inner border border-blue-500/20">
+                <div class="glass-card flex-1 text-center p-6 md:p-8 rounded-2xl w-full reveal">
+                    <div class="w-14 h-14 md:w-16 md:h-16 bg-blue-500/10 text-blue-400 rounded-2xl flex items-center justify-center text-xl md:text-2xl font-bold mx-auto mb-4 md:mb-6 shadow-inner border border-blue-500/20">
                         <i class="fa-solid fa-link"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-3">1. 링크 복사</h3>
-                    <p class="text-slate-400 text-sm leading-relaxed">원하는 VOD 영상이나 스트리머<br>채널 주소를 복사합니다.</p>
+                    <h3 class="text-lg md:text-xl font-bold mb-2 md:mb-3">1. 링크 복사</h3>
+                    <p class="text-slate-400 text-xs md:text-sm leading-relaxed">원하는 VOD 영상이나 스트리머<br class="hidden md:block">채널 주소를 복사합니다.</p>
                 </div>
                 
                 <i class="fa-solid fa-chevron-right text-2xl text-slate-700 hidden md:block reveal"></i>
-                <i class="fa-solid fa-chevron-down text-2xl text-slate-700 md:hidden"></i>
+                <i class="fa-solid fa-chevron-down text-xl text-slate-700 md:hidden my-1"></i>
                 
                 <!-- Step 2 -->
-                <div class="glass-card flex-1 text-center p-8 md:p-6 lg:p-8 rounded-2xl w-full reveal" style="transition-delay: 100ms;">
-                    <div class="w-16 h-16 bg-emerald-500/10 text-emerald-400 rounded-2xl flex items-center justify-center text-2xl font-bold mx-auto mb-6 shadow-inner border border-emerald-500/20">
+                <div class="glass-card flex-1 text-center p-6 md:p-8 rounded-2xl w-full reveal" style="transition-delay: 100ms;">
+                    <div class="w-14 h-14 md:w-16 md:h-16 bg-emerald-500/10 text-emerald-400 rounded-2xl flex items-center justify-center text-xl md:text-2xl font-bold mx-auto mb-4 md:mb-6 shadow-inner border border-emerald-500/20">
                         <i class="fa-solid fa-paste"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-3">2. 설정 및 추가</h3>
-                    <p class="text-slate-400 text-sm leading-relaxed">프로그램에 링크를 붙여넣고<br>원하는 화질/포맷을 고릅니다.</p>
+                    <h3 class="text-lg md:text-xl font-bold mb-2 md:mb-3">2. 설정 및 추가</h3>
+                    <p class="text-slate-400 text-xs md:text-sm leading-relaxed">프로그램에 링크를 붙여넣고<br class="hidden md:block">원하는 화질/포맷을 고릅니다.</p>
                 </div>
 
                 <i class="fa-solid fa-chevron-right text-2xl text-slate-700 hidden md:block reveal"></i>
-                <i class="fa-solid fa-chevron-down text-2xl text-slate-700 md:hidden"></i>
+                <i class="fa-solid fa-chevron-down text-xl text-slate-700 md:hidden my-1"></i>
 
                 <!-- Step 3 -->
-                <div class="glass-card flex-1 text-center p-8 md:p-6 lg:p-8 rounded-2xl w-full reveal" style="transition-delay: 200ms;">
-                    <div class="w-16 h-16 bg-purple-500/10 text-purple-400 rounded-2xl flex items-center justify-center text-2xl font-bold mx-auto mb-6 shadow-inner border border-purple-500/20">
+                <div class="glass-card flex-1 text-center p-6 md:p-8 rounded-2xl w-full reveal" style="transition-delay: 200ms;">
+                    <div class="w-14 h-14 md:w-16 md:h-16 bg-purple-500/10 text-purple-400 rounded-2xl flex items-center justify-center text-xl md:text-2xl font-bold mx-auto mb-4 md:mb-6 shadow-inner border border-purple-500/20">
                         <i class="fa-solid fa-play ml-1"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-3">3. 다운로드 완료</h3>
-                    <p class="text-slate-400 text-sm leading-relaxed">시작 버튼을 누르고 잠시 뒤<br>내 PC에서 영상을 감상하세요!</p>
+                    <h3 class="text-lg md:text-xl font-bold mb-2 md:mb-3">3. 다운로드 완료</h3>
+                    <p class="text-slate-400 text-xs md:text-sm leading-relaxed">시작 버튼을 누르고 잠시 뒤<br class="hidden md:block">내 PC에서 영상을 감상하세요!</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- 주요 기능 섹션 -->
-    <section id="features" class="py-24 bg-slate-900/40 border-y border-white/5 relative z-10">
-        <div class="container mx-auto px-6">
-            <div class="text-center mb-16 reveal">
-                <span class="text-emerald-500 font-black tracking-widest text-xs uppercase bg-emerald-500/10 px-3 py-1 rounded-full">Features</span>
-                <h2 class="text-3xl md:text-4xl font-extrabold mt-4 mb-4">개발자가 쓰려고 직접 깎은 툴</h2>
-                <p class="text-slate-400">군더더기는 빼고 오직 VOD 보존에 필요한 알짜배기 기능만 꽉 채웠습니다.</p>
+    <section id="features" class="py-16 md:py-24 bg-slate-900/40 border-y border-white/5 relative z-10">
+        <div class="container mx-auto px-5 md:px-6">
+            <div class="text-center mb-12 md:mb-16 reveal">
+                <span class="text-emerald-500 font-black tracking-widest text-[10px] md:text-xs uppercase bg-emerald-500/10 px-3 py-1 rounded-full">Features</span>
+                <h2 class="text-2xl sm:text-3xl md:text-4xl font-extrabold mt-3 md:mt-4 mb-3 md:mb-4">개발자가 쓰려고 직접 깎은 툴</h2>
+                <p class="text-sm md:text-base text-slate-400 px-4">군더더기는 빼고 오직 VOD 보존에 필요한 알짜배기 기능만 꽉 채웠습니다.</p>
             </div>
             
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
-                <div class="glass-card p-8 rounded-2xl reveal">
-                    <div class="w-12 h-12 bg-blue-500/20 text-blue-400 rounded-xl flex items-center justify-center text-xl mb-5"><i class="fa-solid fa-list-check"></i></div>
-                    <h3 class="text-xl font-bold mb-3">채널 VOD 일괄 파싱</h3>
-                    <p class="text-slate-400 leading-relaxed text-sm">채널 주소 하나만 넣으세요. 해당 채널의 모든 영상을 스캔해 대기열에 차곡차곡 추가해 줍니다.</p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 max-w-6xl mx-auto">
+                <div class="glass-card p-6 md:p-8 rounded-2xl reveal">
+                    <div class="w-10 h-10 md:w-12 md:h-12 bg-blue-500/20 text-blue-400 rounded-xl flex items-center justify-center text-lg md:text-xl mb-4 md:mb-5"><i class="fa-solid fa-list-check"></i></div>
+                    <h3 class="text-lg md:text-xl font-bold mb-2 md:mb-3">채널 VOD 일괄 파싱</h3>
+                    <p class="text-slate-400 leading-relaxed text-xs md:text-sm">채널 주소 하나만 넣으세요. 해당 채널의 모든 영상을 스캔해 대기열에 차곡차곡 추가해 줍니다.</p>
                 </div>
-                <div class="glass-card p-8 rounded-2xl reveal" style="transition-delay: 100ms;">
-                    <div class="w-12 h-12 bg-emerald-500/20 text-emerald-400 rounded-xl flex items-center justify-center text-xl mb-5"><i class="fa-solid fa-scissors"></i></div>
-                    <h3 class="text-xl font-bold mb-3">스마트 구간 자르기</h3>
-                    <p class="text-slate-400 leading-relaxed text-sm">수 시간짜리 전체 영상을 받을 필요 없습니다. 원하는 시작/종료 시간만 입력해 액기스만 뽑아내세요.</p>
+                <div class="glass-card p-6 md:p-8 rounded-2xl reveal" style="transition-delay: 100ms;">
+                    <div class="w-10 h-10 md:w-12 md:h-12 bg-emerald-500/20 text-emerald-400 rounded-xl flex items-center justify-center text-lg md:text-xl mb-4 md:mb-5"><i class="fa-solid fa-scissors"></i></div>
+                    <h3 class="text-lg md:text-xl font-bold mb-2 md:mb-3">스마트 구간 자르기</h3>
+                    <p class="text-slate-400 leading-relaxed text-xs md:text-sm">수 시간짜리 전체 영상을 받을 필요 없습니다. 원하는 시작/종료 시간만 입력해 액기스만 뽑아내세요.</p>
                 </div>
-                <div class="glass-card p-8 rounded-2xl reveal" style="transition-delay: 200ms;">
-                    <div class="w-12 h-12 bg-purple-500/20 text-purple-400 rounded-xl flex items-center justify-center text-xl mb-5"><i class="fa-solid fa-image"></i></div>
-                    <h3 class="text-xl font-bold mb-3">메타데이터 완벽 보존</h3>
-                    <p class="text-slate-400 leading-relaxed text-sm">영상 파일 내부에 원본 썸네일, 방송 제목, 스트리머 정보 등을 영구적으로 박아 넣어 관리하기 쉽습니다.</p>
+                <div class="glass-card p-6 md:p-8 rounded-2xl reveal" style="transition-delay: 200ms;">
+                    <div class="w-10 h-10 md:w-12 md:h-12 bg-purple-500/20 text-purple-400 rounded-xl flex items-center justify-center text-lg md:text-xl mb-4 md:mb-5"><i class="fa-solid fa-image"></i></div>
+                    <h3 class="text-lg md:text-xl font-bold mb-2 md:mb-3">메타데이터 완벽 보존</h3>
+                    <p class="text-slate-400 leading-relaxed text-xs md:text-sm">영상 파일 내부에 원본 썸네일, 방송 제목, 스트리머 정보 등을 영구적으로 박아 넣어 관리하기 쉽습니다.</p>
                 </div>
-                <div class="glass-card p-8 rounded-2xl reveal">
-                    <div class="w-12 h-12 bg-yellow-500/20 text-yellow-400 rounded-xl flex items-center justify-center text-xl mb-5"><i class="fa-solid fa-sliders"></i></div>
-                    <h3 class="text-xl font-bold mb-3">세밀한 화질 및 포맷 제어</h3>
-                    <p class="text-slate-400 leading-relaxed text-sm">1080p 최고 화질부터 데이터 절약형 화질은 물론, MP4/MKV 병합과 오디오만(MP3) 추출하는 기능도 제공합니다.</p>
+                <div class="glass-card p-6 md:p-8 rounded-2xl reveal">
+                    <div class="w-10 h-10 md:w-12 md:h-12 bg-yellow-500/20 text-yellow-400 rounded-xl flex items-center justify-center text-lg md:text-xl mb-4 md:mb-5"><i class="fa-solid fa-sliders"></i></div>
+                    <h3 class="text-lg md:text-xl font-bold mb-2 md:mb-3">세밀한 화질 및 포맷 제어</h3>
+                    <p class="text-slate-400 leading-relaxed text-xs md:text-sm">1080p 최고 화질부터 데이터 절약형 화질은 물론, MP4/MKV 병합과 오디오만(MP3) 추출하는 기능도 제공합니다.</p>
                 </div>
-                <div class="glass-card p-8 rounded-2xl reveal" style="transition-delay: 100ms;">
-                    <div class="w-12 h-12 bg-orange-500/20 text-orange-400 rounded-xl flex items-center justify-center text-xl mb-5"><i class="fa-solid fa-cookie-bite"></i></div>
-                    <h3 class="text-xl font-bold mb-3">성인/구독자 전용 우회</h3>
-                    <p class="text-slate-400 leading-relaxed text-sm">평소 치지직을 시청하는 브라우저의 쿠키를 연동하여, 로그인 권한이 필요한 특수 VOD도 막힘없이 다운로드합니다.</p>
+                <div class="glass-card p-6 md:p-8 rounded-2xl reveal" style="transition-delay: 100ms;">
+                    <div class="w-10 h-10 md:w-12 md:h-12 bg-orange-500/20 text-orange-400 rounded-xl flex items-center justify-center text-lg md:text-xl mb-4 md:mb-5"><i class="fa-solid fa-cookie-bite"></i></div>
+                    <h3 class="text-lg md:text-xl font-bold mb-2 md:mb-3">성인/구독자 전용 우회</h3>
+                    <p class="text-slate-400 leading-relaxed text-xs md:text-sm">평소 치지직을 시청하는 브라우저의 쿠키를 연동하여, 로그인 권한이 필요한 특수 VOD도 막힘없이 다운로드합니다.</p>
                 </div>
-                <div class="glass-card p-8 rounded-2xl reveal" style="transition-delay: 200ms;">
-                    <div class="w-12 h-12 bg-pink-500/20 text-pink-400 rounded-xl flex items-center justify-center text-xl mb-5"><i class="fa-solid fa-cloud-arrow-down"></i></div>
-                    <h3 class="text-xl font-bold mb-3">스스로 갱신하는 업데이트</h3>
-                    <p class="text-slate-400 leading-relaxed text-sm">매번 깃허브를 들락거릴 필요가 없습니다. 앱 실행 시 새 버전을 감지하면 원클릭으로 덮어쓰고 자동 재시작합니다.</p>
+                <div class="glass-card p-6 md:p-8 rounded-2xl reveal" style="transition-delay: 200ms;">
+                    <div class="w-10 h-10 md:w-12 md:h-12 bg-pink-500/20 text-pink-400 rounded-xl flex items-center justify-center text-lg md:text-xl mb-4 md:mb-5"><i class="fa-solid fa-cloud-arrow-down"></i></div>
+                    <h3 class="text-lg md:text-xl font-bold mb-2 md:mb-3">스스로 갱신하는 업데이트</h3>
+                    <p class="text-slate-400 leading-relaxed text-xs md:text-sm">매번 깃허브를 들락거릴 필요가 없습니다. 앱 실행 시 새 버전을 감지하면 원클릭으로 덮어쓰고 자동 재시작합니다.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- 요구 사양 섹션 -->
-    <section id="specs" class="py-20 relative z-10">
-        <div class="container mx-auto px-6 max-w-4xl reveal">
+    <section id="specs" class="py-16 md:py-20 relative z-10">
+        <div class="container mx-auto px-5 md:px-6 max-w-4xl reveal">
             <div class="glass-card rounded-2xl overflow-hidden flex flex-col md:flex-row">
-                <div class="bg-blue-600/10 p-8 md:w-1/3 flex flex-col justify-center items-center text-center border-r border-white/5">
-                    <i class="fa-solid fa-microchip text-5xl text-blue-400 mb-4"></i>
-                    <h3 class="text-2xl font-bold mb-2">시스템 요구 사양</h3>
-                    <p class="text-blue-300 text-sm">최적화를 통해 구형 PC에서도 쾌적합니다.</p>
+                <div class="bg-blue-600/10 p-6 md:p-8 md:w-1/3 flex flex-col justify-center items-center text-center border-b md:border-b-0 md:border-r border-white/5">
+                    <i class="fa-solid fa-microchip text-4xl md:text-5xl text-blue-400 mb-3 md:mb-4"></i>
+                    <h3 class="text-xl md:text-2xl font-bold mb-1 md:mb-2">시스템 요구 사양</h3>
+                    <p class="text-blue-300 text-xs md:text-sm">최적화를 통해 구형 PC에서도 쾌적합니다.</p>
                 </div>
-                <div class="p-8 md:w-2/3 space-y-4">
-                    <div class="flex items-center gap-4 border-b border-slate-700/50 pb-4">
-                        <div class="w-24 text-slate-400 font-bold text-sm bg-slate-800/50 px-2 py-1 rounded text-center">운영체제</div>
+                <div class="p-6 md:p-8 md:w-2/3 space-y-4">
+                    <div class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 border-b border-slate-700/50 pb-4">
+                        <div class="w-24 text-slate-400 font-bold text-xs md:text-sm bg-slate-800/50 px-2 py-1 rounded text-center inline-block">운영체제</div>
                         <div class="text-slate-200 text-sm font-semibold">Windows 10, 11 (64-bit 권장)</div>
                     </div>
-                    <div class="flex items-center gap-4 border-b border-slate-700/50 pb-4">
-                        <div class="w-24 text-slate-400 font-bold text-sm bg-slate-800/50 px-2 py-1 rounded text-center">메모리(RAM)</div>
+                    <div class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 border-b border-slate-700/50 pb-4">
+                        <div class="w-24 text-slate-400 font-bold text-xs md:text-sm bg-slate-800/50 px-2 py-1 rounded text-center inline-block">메모리(RAM)</div>
                         <div class="text-slate-200 text-sm font-semibold">4GB 이상 (영상 병합 시 필요)</div>
                     </div>
-                    <div class="flex items-center gap-4">
-                        <div class="w-24 text-slate-400 font-bold text-sm bg-slate-800/50 px-2 py-1 rounded text-center">필수 사항</div>
-                        <div class="text-emerald-400 text-sm font-bold bg-emerald-500/10 px-3 py-1 rounded-lg border border-emerald-500/20">
+                    <div class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
+                        <div class="w-24 text-slate-400 font-bold text-xs md:text-sm bg-slate-800/50 px-2 py-1 rounded text-center inline-block">필수 사항</div>
+                        <div class="text-emerald-400 text-xs md:text-sm font-bold bg-emerald-500/10 px-3 py-1.5 rounded-lg border border-emerald-500/20 inline-block">
                             <i class="fa-solid fa-check mr-1"></i> 파이썬(Python) 설치 불필요! 독립 실행
                         </div>
                     </div>
@@ -389,50 +401,50 @@
     </section>
 
     <!-- FAQ 섹션 -->
-    <section id="faq" class="py-24 relative z-10">
-        <div class="container mx-auto px-6 max-w-3xl">
-            <div class="text-center mb-16 reveal">
-                <span class="text-purple-500 font-black tracking-widest text-xs uppercase bg-purple-500/10 px-3 py-1 rounded-full">Q & A</span>
-                <h2 class="text-3xl md:text-4xl font-extrabold mt-4 mb-4">자주 묻는 질문</h2>
-                <p class="text-slate-400">사용 중 궁금한 점이 있다면 먼저 확인해 보세요.</p>
+    <section id="faq" class="py-16 md:py-24 relative z-10">
+        <div class="container mx-auto px-5 md:px-6 max-w-3xl">
+            <div class="text-center mb-12 md:mb-16 reveal">
+                <span class="text-purple-500 font-black tracking-widest text-[10px] md:text-xs uppercase bg-purple-500/10 px-3 py-1 rounded-full">Q & A</span>
+                <h2 class="text-2xl sm:text-3xl md:text-4xl font-extrabold mt-3 md:mt-4 mb-3 md:mb-4">자주 묻는 질문</h2>
+                <p class="text-sm md:text-base text-slate-400 px-4">사용 중 궁금한 점이 있다면 먼저 확인해 보세요.</p>
             </div>
             
-            <div class="space-y-4 reveal">
+            <div class="space-y-3 md:space-y-4 reveal">
                 <details class="group glass-card rounded-xl [&_summary::-webkit-details-marker]:hidden cursor-pointer" open>
-                    <summary class="flex justify-between items-center font-bold p-6 text-lg text-white hover:text-blue-400 transition">
-                        <div class="flex items-center gap-3">
-                            <i class="fa-solid fa-shield-halved text-red-400"></i>
-                            <span>실행 시 스마트스크린(보안 경고) 창이 뜨거나 백신이 지워요.</span>
+                    <summary class="flex justify-between items-center font-bold p-5 md:p-6 text-base md:text-lg text-white hover:text-blue-400 transition">
+                        <div class="flex items-center gap-3 pr-4">
+                            <i class="fa-solid fa-shield-halved text-red-400 shrink-0"></i>
+                            <span class="leading-tight">실행 시 스마트스크린 창이 뜨거나 백신이 지워요.</span>
                         </div>
-                        <span class="transition group-open:rotate-180 text-slate-500"><i class="fa-solid fa-chevron-down"></i></span>
+                        <span class="transition group-open:rotate-180 text-slate-500 shrink-0"><i class="fa-solid fa-chevron-down"></i></span>
                     </summary>
-                    <div class="text-slate-400 p-6 pt-0 border-t border-white/5 leading-relaxed text-sm">
-                        <p>파이썬 코드를 윈도우 단일 실행 파일(.exe)로 변환하는 PyInstaller 특성 탓에, 윈도우 디펜더가 <strong>'알려지지 않은 프로그램'</strong>으로 오진하는 현상입니다. 코드는 <a href="https://github.com/sunglogbag81/Chzzk-VOD-downloader" class="text-blue-400 hover:underline" target="_blank">GitHub에 모두 투명하게 공개</a>되어 있으니 안심하시고, 차단 창에서 <strong>'추가 정보' → '실행'</strong>을 누르거나 예외 항목으로 설정해 주세요.</p>
+                    <div class="text-slate-400 p-5 md:p-6 pt-0 border-t border-white/5 leading-relaxed text-xs md:text-sm">
+                        <p>파이썬 코드를 윈도우 단일 실행 파일(.exe)로 변환하는 PyInstaller 특성 탓에, 윈도우 디펜더가 <strong>'알려지지 않은 프로그램'</strong>으로 오진하는 현상입니다. 코드는 <a href="https://github.com/sunglogbag81/Chzzk-VOD-downloader" class="text-blue-400 hover:underline" target="_blank">GitHub에 투명하게 공개</a>되어 있으니 안심하시고, 차단 창에서 <strong>'추가 정보' → '실행'</strong>을 누르거나 예외 항목으로 설정해 주세요.</p>
                     </div>
                 </details>
 
                 <details class="group glass-card rounded-xl [&_summary::-webkit-details-marker]:hidden cursor-pointer">
-                    <summary class="flex justify-between items-center font-bold p-6 text-lg text-white hover:text-blue-400 transition">
-                        <div class="flex items-center gap-3">
-                            <i class="fa-solid fa-cookie-bite text-orange-400"></i>
-                            <span>쿠키(Cookies) 우회 옵션은 언제 쓰나요?</span>
+                    <summary class="flex justify-between items-center font-bold p-5 md:p-6 text-base md:text-lg text-white hover:text-blue-400 transition">
+                        <div class="flex items-center gap-3 pr-4">
+                            <i class="fa-solid fa-cookie-bite text-orange-400 shrink-0"></i>
+                            <span class="leading-tight">쿠키(Cookies) 우회 옵션은 언제 쓰나요?</span>
                         </div>
-                        <span class="transition group-open:rotate-180 text-slate-500"><i class="fa-solid fa-chevron-down"></i></span>
+                        <span class="transition group-open:rotate-180 text-slate-500 shrink-0"><i class="fa-solid fa-chevron-down"></i></span>
                     </summary>
-                    <div class="text-slate-400 p-6 pt-0 border-t border-white/5 leading-relaxed text-sm">
+                    <div class="text-slate-400 p-5 md:p-6 pt-0 border-t border-white/5 leading-relaxed text-xs md:text-sm">
                         <p><strong>성인 인증(19+)</strong> 영상이나 <strong>채널 구독자 전용 영상</strong>을 받을 때 씁니다. 평소 치지직에 로그인해 두는 웹 브라우저를 옵션에서 선택하면, 프로그램이 로그인 세션을 빌려와서 안전하게 영상을 받아옵니다.</p>
                     </div>
                 </details>
 
                 <details class="group glass-card rounded-xl [&_summary::-webkit-details-marker]:hidden cursor-pointer">
-                    <summary class="flex justify-between items-center font-bold p-6 text-lg text-white hover:text-blue-400 transition">
-                        <div class="flex items-center gap-3">
-                            <i class="fa-solid fa-ban text-slate-400"></i>
-                            <span>짧은 '클립(Clip)' 영상도 다운로드할 수 있나요?</span>
+                    <summary class="flex justify-between items-center font-bold p-5 md:p-6 text-base md:text-lg text-white hover:text-blue-400 transition">
+                        <div class="flex items-center gap-3 pr-4">
+                            <i class="fa-solid fa-ban text-slate-400 shrink-0"></i>
+                            <span class="leading-tight">짧은 '클립(Clip)' 영상도 받을 수 있나요?</span>
                         </div>
-                        <span class="transition group-open:rotate-180 text-slate-500"><i class="fa-solid fa-chevron-down"></i></span>
+                        <span class="transition group-open:rotate-180 text-slate-500 shrink-0"><i class="fa-solid fa-chevron-down"></i></span>
                     </summary>
-                    <div class="text-slate-400 p-6 pt-0 border-t border-white/5 leading-relaxed text-sm">
+                    <div class="text-slate-400 p-5 md:p-6 pt-0 border-t border-white/5 leading-relaxed text-xs md:text-sm">
                         <p>현재 치지직 서버 측의 클립 전용 API 방어벽 강화로 인해 <strong>클립 다운로드는 제한</strong>되어 있습니다. 일반 VOD(다시보기) 용도로 사용해 주시기 바랍니다.</p>
                     </div>
                 </details>
@@ -441,84 +453,84 @@
     </section>
 
     <!-- 패치노트 섹션 -->
-    <section id="changelog" class="py-24 bg-slate-900/30 border-y border-white/5 relative z-10">
-        <div class="container mx-auto px-6 max-w-4xl reveal">
-            <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-10 border-b border-slate-800 pb-6">
+    <section id="changelog" class="py-16 md:py-24 bg-slate-900/30 border-y border-white/5 relative z-10">
+        <div class="container mx-auto px-5 md:px-6 max-w-4xl reveal">
+            <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-3 mb-8 md:mb-10 border-b border-slate-800 pb-4 md:pb-6">
                 <div class="flex items-center gap-3">
-                    <i class="fa-solid fa-clock-rotate-left text-3xl text-blue-500"></i>
-                    <h2 class="text-3xl font-extrabold">업데이트 내역</h2>
+                    <i class="fa-solid fa-clock-rotate-left text-2xl md:text-3xl text-blue-500"></i>
+                    <h2 class="text-2xl md:text-3xl font-extrabold">업데이트 내역</h2>
                 </div>
-                <a href="https://github.com/sunglogbag81/Chzzk-VOD-downloader/releases" target="_blank" class="text-sm text-slate-400 hover:text-white transition">전체 릴리즈 노트 보기 &rarr;</a>
+                <a href="https://github.com/sunglogbag81/Chzzk-VOD-downloader/releases" target="_blank" class="text-xs md:text-sm text-slate-400 hover:text-white transition">전체 릴리즈 노트 보기 &rarr;</a>
             </div>
             
-            <div class="glass-card rounded-2xl p-6 md:p-10 h-[450px] overflow-y-auto custom-scrollbar relative">
+            <div class="glass-card rounded-2xl p-5 md:p-10 h-[350px] md:h-[450px] overflow-y-auto custom-scrollbar relative">
                 <!-- 타임라인 중앙선 -->
-                <div class="absolute left-[38px] md:left-[54px] top-10 bottom-10 w-0.5 bg-slate-700/50"></div>
+                <div class="absolute left-[33px] md:left-[54px] top-10 bottom-10 w-0.5 bg-slate-700/50"></div>
 
                 <!-- v1.1.0 -->
-                <div class="mb-12 relative pl-12 md:pl-16">
-                    <div class="absolute w-5 h-5 bg-blue-500 rounded-full left-[2px] md:left-[18px] top-1.5 shadow-[0_0_15px_rgba(59,130,246,0.8)] border-4 border-[#161f32] z-10"></div>
-                    <h3 class="text-2xl font-bold text-white mb-2 flex items-center gap-3">
+                <div class="mb-10 md:mb-12 relative pl-10 md:pl-16">
+                    <div class="absolute w-4 h-4 md:w-5 md:h-5 bg-blue-500 rounded-full left-[2px] md:left-[18px] top-1 md:top-1.5 shadow-[0_0_15px_rgba(59,130,246,0.8)] border-4 border-[#161f32] z-10"></div>
+                    <h3 class="text-xl md:text-2xl font-bold text-white mb-2 flex items-center gap-2 md:gap-3 flex-wrap">
                         v1.1.0 
-                        <span class="text-xs font-bold text-emerald-400 border border-emerald-500/30 px-2 py-0.5 rounded bg-emerald-500/10">최신 릴리즈</span>
+                        <span class="text-[10px] md:text-xs font-bold text-emerald-400 border border-emerald-500/30 px-2 py-0.5 rounded bg-emerald-500/10">최신 릴리즈</span>
                     </h3>
-                    <p class="text-slate-500 text-xs mb-4 font-mono">2026-02-23</p>
-                    <div class="bg-slate-800/40 rounded-xl p-5 border border-slate-700/50">
-                        <ul class="space-y-4 text-slate-300 text-sm">
-                            <li class="flex items-start gap-3">
-                                <div class="bg-blue-500/20 p-2 rounded shrink-0"><i class="fa-solid fa-paintbrush text-blue-400 w-4 text-center"></i></div>
+                    <p class="text-slate-500 text-[10px] md:text-xs mb-3 md:mb-4 font-mono">2026-02-23</p>
+                    <div class="bg-slate-800/40 rounded-xl p-4 md:p-5 border border-slate-700/50">
+                        <ul class="space-y-3 md:space-y-4 text-slate-300 text-xs md:text-sm">
+                            <li class="flex items-start gap-2 md:gap-3">
+                                <div class="bg-blue-500/20 p-1.5 md:p-2 rounded shrink-0 mt-0.5"><i class="fa-solid fa-paintbrush text-blue-400 w-3 md:w-4 text-center"></i></div>
                                 <div><strong class="text-blue-300 block mb-0.5">모던 다크 그레이 UI 전면 개편</strong>세련된 2단 대시보드 레이아웃과 스마트 토글 스위치 적용.</div>
                             </li>
-                            <li class="flex items-start gap-3">
-                                <div class="bg-emerald-500/20 p-2 rounded shrink-0"><i class="fa-solid fa-tv text-emerald-400 w-4 text-center"></i></div>
+                            <li class="flex items-start gap-2 md:gap-3">
+                                <div class="bg-emerald-500/20 p-1.5 md:p-2 rounded shrink-0 mt-0.5"><i class="fa-solid fa-tv text-emerald-400 w-3 md:w-4 text-center"></i></div>
                                 <div><strong class="text-emerald-300 block mb-0.5">화질 옵션 및 오디오(MP3) 추출</strong>다양한 해상도 선택 및 영상 없이 소리만 추출하는 기능 추가.</div>
                             </li>
-                            <li class="flex items-start gap-3">
-                                <div class="bg-red-500/20 p-2 rounded shrink-0"><i class="fa-solid fa-bug-slash text-red-400 w-4 text-center"></i></div>
-                                <div><strong class="text-red-300 block mb-0.5">자동 업데이트 치명적 튕김 수정</strong>업데이트 재시작 시 발생하던 DLL 로드 실패 버그 완벽 해결.</div>
+                            <li class="flex items-start gap-2 md:gap-3">
+                                <div class="bg-red-500/20 p-1.5 md:p-2 rounded shrink-0 mt-0.5"><i class="fa-solid fa-bug-slash text-red-400 w-3 md:w-4 text-center"></i></div>
+                                <div><strong class="text-red-300 block mb-0.5">자동 업데이트 튕김 수정</strong>업데이트 재시작 시 발생하던 DLL 로드 실패 버그 완벽 해결.</div>
                             </li>
                         </ul>
                     </div>
                 </div>
 
                 <!-- v1.0.4 -->
-                <div class="mb-12 relative pl-12 md:pl-16 opacity-60 hover:opacity-100 transition duration-300">
-                    <div class="absolute w-4 h-4 bg-slate-600 rounded-full left-[2.5px] md:left-[18.5px] top-1.5 border-4 border-[#161f32] z-10"></div>
-                    <h3 class="text-xl font-bold text-slate-300 mb-1">v1.0.4</h3>
-                    <p class="text-slate-500 text-xs mb-3 font-mono">2026-02-22</p>
-                    <ul class="space-y-2 text-slate-400 text-sm pl-1">
+                <div class="mb-10 relative pl-10 md:pl-16 opacity-60 hover:opacity-100 transition duration-300">
+                    <div class="absolute w-3 h-3 md:w-4 md:h-4 bg-slate-600 rounded-full left-[4px] md:left-[18.5px] top-1.5 border-2 md:border-4 border-[#161f32] z-10"></div>
+                    <h3 class="text-lg md:text-xl font-bold text-slate-300 mb-1">v1.0.4</h3>
+                    <p class="text-slate-500 text-[10px] md:text-xs mb-2 md:mb-3 font-mono">2026-02-22</p>
+                    <ul class="space-y-1 md:space-y-2 text-slate-400 text-xs md:text-sm pl-1">
                         <li>• 백신 오진율 대폭 감소 (빌드 최적화)</li>
                         <li>• yt-dlp 코어 엔진 최신화</li>
                     </ul>
                 </div>
 
                 <!-- v1.0.3 -->
-                <div class="mb-8 relative pl-12 md:pl-16 opacity-60 hover:opacity-100 transition duration-300">
-                    <div class="absolute w-4 h-4 bg-slate-600 rounded-full left-[2.5px] md:left-[18.5px] top-1.5 border-4 border-[#161f32] z-10"></div>
-                    <h3 class="text-xl font-bold text-slate-300 mb-1">v1.0.3</h3>
-                    <p class="text-slate-500 text-xs mb-3 font-mono">2026-02-22</p>
-                    <ul class="space-y-2 text-slate-400 text-sm pl-1">
+                <div class="mb-4 relative pl-10 md:pl-16 opacity-60 hover:opacity-100 transition duration-300">
+                    <div class="absolute w-3 h-3 md:w-4 md:h-4 bg-slate-600 rounded-full left-[4px] md:left-[18.5px] top-1.5 border-2 md:border-4 border-[#161f32] z-10"></div>
+                    <h3 class="text-lg md:text-xl font-bold text-slate-300 mb-1">v1.0.3</h3>
+                    <p class="text-slate-500 text-[10px] md:text-xs mb-2 md:mb-3 font-mono">2026-02-22</p>
+                    <ul class="space-y-1 md:space-y-2 text-slate-400 text-xs md:text-sm pl-1">
                         <li>• 다운로드 코어 <code>yt-dlp</code>로 전면 교체</li>
-                        <li>• 프로그램 자체 스마트 자동 업데이트 로직 탑재</li>
+                        <li>• 스마트 자동 업데이트 로직 탑재</li>
                     </ul>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- 하단 Call To Action (다운로드 유도) -->
-    <section class="py-24 relative z-10">
-        <div class="container mx-auto px-6 max-w-4xl text-center reveal">
-            <div class="bg-gradient-to-br from-slate-800 to-slate-900 border border-slate-700 rounded-3xl p-10 md:p-16 shadow-2xl relative overflow-hidden ring-1 ring-white/10">
+    <!-- 하단 Call To Action -->
+    <section class="py-16 md:py-24 relative z-10">
+        <div class="container mx-auto px-5 md:px-6 max-w-4xl text-center reveal">
+            <div class="bg-gradient-to-br from-slate-800 to-slate-900 border border-slate-700 rounded-2xl md:rounded-3xl p-8 md:p-16 shadow-2xl relative overflow-hidden ring-1 ring-white/10">
                 <!-- 빛 효과 -->
-                <div class="absolute top-0 right-0 w-64 h-64 bg-blue-500/20 rounded-full blur-[80px] pointer-events-none"></div>
-                <div class="absolute bottom-0 left-0 w-64 h-64 bg-emerald-500/10 rounded-full blur-[80px] pointer-events-none"></div>
+                <div class="absolute top-0 right-0 w-48 md:w-64 h-48 md:h-64 bg-blue-500/20 rounded-full blur-[60px] md:blur-[80px] pointer-events-none -mr-10 -mt-10"></div>
+                <div class="absolute bottom-0 left-0 w-48 md:w-64 h-48 md:h-64 bg-emerald-500/10 rounded-full blur-[60px] md:blur-[80px] pointer-events-none -ml-10 -mb-10"></div>
                 
-                <h2 class="text-3xl md:text-5xl font-black mb-6 relative z-10">준비는 모두 끝났습니다</h2>
-                <p class="text-slate-400 text-lg mb-10 relative z-10 font-medium">설치할 필요조차 없는 단일 파일로 지금 바로 경험하세요.</p>
+                <h2 class="text-2xl sm:text-3xl md:text-5xl font-black mb-4 md:mb-6 relative z-10 leading-tight">준비는 모두 끝났습니다</h2>
+                <p class="text-slate-400 text-sm md:text-lg mb-8 md:mb-10 relative z-10 font-medium px-4">설치할 필요조차 없는 단일 파일로 지금 바로 경험하세요.</p>
                 
-                <!-- 📌 EXE 즉시 다운로드 2번째 직통 링크 -->
-                <a href="https://github.com/sunglogbag81/Chzzk-VOD-downloader/releases/latest/download/chzzk.exe" class="btn-gradient px-10 py-5 text-white font-bold rounded-xl shadow-[0_10px_30px_rgba(37,99,235,0.4)] inline-flex items-center gap-3 text-xl relative z-10 group">
+                <!-- EXE 다운로드 직통 링크 -->
+                <a href="https://github.com/sunglogbag81/Chzzk-VOD-downloader/releases/latest/download/chzzk.exe" class="btn-gradient px-6 py-4 md:px-10 md:py-5 text-white font-bold rounded-xl shadow-[0_10px_30px_rgba(37,99,235,0.4)] inline-flex items-center gap-2 md:gap-3 text-lg md:text-xl relative z-10 group w-full sm:w-auto justify-center">
                     <i class="fa-solid fa-download animate-bounce"></i> 
                     <span>무료로 다운로드 <span class="text-sm font-normal text-slate-200">(.exe)</span></span>
                 </a>
@@ -527,26 +539,26 @@
     </section>
 
     <!-- 푸터 -->
-    <footer class="bg-[#070b14] border-t border-slate-800 py-12 relative z-10">
-        <div class="container mx-auto px-6 max-w-6xl flex flex-col md:flex-row justify-between items-center gap-8">
-            <div class="text-slate-500 text-sm leading-relaxed md:text-left text-center">
-                <p class="mb-2 text-slate-400 font-bold"><i class="fa-solid fa-triangle-exclamation text-yellow-600 mr-1"></i> 면책 조항</p>
+    <footer class="bg-[#070b14] border-t border-slate-800 py-10 md:py-12 relative z-10">
+        <div class="container mx-auto px-5 md:px-6 max-w-6xl flex flex-col md:flex-row justify-between items-center gap-6 md:gap-8">
+            <div class="text-slate-500 text-xs md:text-sm leading-relaxed md:text-left text-center">
+                <p class="mb-1 md:mb-2 text-slate-400 font-bold"><i class="fa-solid fa-triangle-exclamation text-yellow-600 mr-1"></i> 면책 조항</p>
                 <p>본 오픈소스 소프트웨어는 네이버 치지직(CHZZK)의 공식 프로그램이 아닙니다.</p>
-                <p>다운로드한 영상의 무단 재배포 및 영리적 이용으로 인한 법적 책임은 전적으로 사용자 본인에게 있습니다.</p>
+                <p>다운로드한 영상의 무단 재배포 및 영리적 이용으로 인한 법적 책임은 사용자 본인에게 있습니다.</p>
             </div>
             
-            <div class="flex flex-col items-center md:items-end gap-5">
-                <a href="https://github.com/sunglogbag81" target="_blank" class="flex items-center gap-2 text-slate-400 hover:text-white transition bg-slate-800 hover:bg-slate-700 px-5 py-2.5 rounded-lg text-sm font-bold border border-slate-700">
-                    <i class="fa-brands fa-github text-lg"></i> 제작자 GitHub
+            <div class="flex flex-col items-center md:items-end gap-4 md:gap-5">
+                <a href="https://github.com/sunglogbag81" target="_blank" class="flex items-center gap-2 text-slate-400 hover:text-white transition bg-slate-800 hover:bg-slate-700 px-4 py-2 md:px-5 md:py-2.5 rounded-lg text-xs md:text-sm font-bold border border-slate-700">
+                    <i class="fa-brands fa-github text-base md:text-lg"></i> 제작자 GitHub
                 </a>
-                <p class="text-slate-600 font-mono text-xs tracking-wider">
+                <p class="text-slate-600 font-mono text-[10px] md:text-xs tracking-wider">
                     &copy; 2026 Developed by <span class="text-slate-400 font-bold">감파르다</span>
                 </p>
             </div>
         </div>
     </footer>
 
-    <!-- 자바스크립트 (스크롤 애니메이션 및 모바일 메뉴) -->
+    <!-- 자바스크립트 -->
     <script>
         // 1. 스크롤 페이드 인(Reveal) 애니메이션
         function reveal() {
@@ -554,14 +566,14 @@
             for (var i = 0; i < reveals.length; i++) {
                 var windowHeight = window.innerHeight;
                 var elementTop = reveals[i].getBoundingClientRect().top;
-                var elementVisible = 100;
+                var elementVisible = 80;
                 if (elementTop < windowHeight - elementVisible) {
                     reveals[i].classList.add("active");
                 }
             }
         }
         window.addEventListener("scroll", reveal);
-        reveal(); // 초기 로드 시 한 번 실행
+        reveal();
 
         // 2. 모바일 햄버거 메뉴 토글
         const btn = document.getElementById('mobile-menu-btn');
@@ -572,7 +584,7 @@
         btn.addEventListener('click', () => {
             menu.classList.remove('hidden');
             menu.classList.add('flex');
-            document.body.style.overflow = 'hidden'; // 배경 스크롤 방지
+            document.body.style.overflow = 'hidden';
         });
 
         const closeMenu = () => {
