@@ -9,13 +9,13 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts (Pretendard & JetBrains Mono) -->
+    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     <style>
         @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
         body { 
             font-family: 'Pretendard', sans-serif; 
-            background-color: #0f172a; /* 더 깊은 다크 블루 배경 */
+            background-color: #0f172a;
             background-image: radial-gradient(circle at top right, rgba(37, 99, 235, 0.1), transparent 40%),
                               radial-gradient(circle at bottom left, rgba(16, 185, 129, 0.05), transparent 40%);
             background-attachment: fixed;
@@ -34,7 +34,7 @@
         .btn-gradient:hover {
             background-position: right center;
         }
-        /* 패치노트 스크롤바 커스텀 */
+        /* 커스텀 스크롤바 */
         .custom-scrollbar::-webkit-scrollbar {
             width: 8px;
         }
@@ -60,13 +60,15 @@
             <span>CHZZK <span class="text-blue-500 font-light">Downloader</span></span>
         </div>
         <div class="hidden md:flex gap-8 text-sm font-semibold text-gray-400">
+            <a href="#how-to-use" class="hover:text-white transition">사용법</a>
             <a href="#features" class="hover:text-white transition">주요 기능</a>
+            <a href="#faq" class="hover:text-white transition">FAQ</a>
             <a href="#changelog" class="hover:text-white transition">패치노트</a>
         </div>
     </nav>
 
     <!-- 히어로(메인) 섹션 -->
-    <header class="container mx-auto px-6 pt-24 pb-32 text-center relative z-10">
+    <header class="container mx-auto px-6 pt-24 pb-20 text-center relative z-10">
         <div class="inline-block mb-4 px-4 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-sm font-bold tracking-wide">
             v1.0.3 업데이트 완료 🚀
         </div>
@@ -83,8 +85,8 @@
                 <i class="fa-solid fa-download"></i>
                 무료 다운로드 (Windows)
             </a>
-            <a href="#features" class="px-8 py-4 bg-gray-800/80 hover:bg-gray-700 text-white font-bold rounded-xl border border-gray-700 transition flex items-center justify-center gap-2 text-lg backdrop-blur-sm">
-                <i class="fa-solid fa-compass"></i> 기능 둘러보기
+            <a href="#how-to-use" class="px-8 py-4 bg-gray-800/80 hover:bg-gray-700 text-white font-bold rounded-xl border border-gray-700 transition flex items-center justify-center gap-2 text-lg backdrop-blur-sm">
+                <i class="fa-solid fa-compass"></i> 사용법 보기
             </a>
         </div>
         <p class="mt-6 text-sm font-mono text-gray-500 bg-gray-900/50 inline-block px-4 py-2 rounded-lg border border-gray-800">
@@ -92,11 +94,50 @@
         </p>
     </header>
 
+    <!-- 초간단 사용법 섹션 -->
+    <section id="how-to-use" class="py-20 bg-gray-900/30 border-y border-gray-800">
+        <div class="container mx-auto px-6 max-w-5xl">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-extrabold mb-4">단 3단계로 끝나는 다운로드</h2>
+                <p class="text-gray-400">누구나 쉽게 사용할 수 있는 직관적인 인터페이스를 제공합니다.</p>
+            </div>
+            
+            <div class="flex flex-col md:flex-row justify-between items-center gap-8 relative">
+                <!-- 단계 1 -->
+                <div class="flex-1 text-center bg-gray-800/50 p-8 rounded-2xl border border-gray-700 hover:border-blue-500/50 transition w-full">
+                    <div class="w-16 h-16 bg-blue-500 text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-6 shadow-lg shadow-blue-500/20">1</div>
+                    <h3 class="text-xl font-bold mb-3 text-gray-100">링크 복사</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">다운로드하고 싶은 치지직 VOD나<br>스트리머의 채널 주소를 복사합니다.</p>
+                </div>
+                
+                <i class="fa-solid fa-arrow-right text-3xl text-gray-700 hidden md:block"></i>
+                <i class="fa-solid fa-arrow-down text-3xl text-gray-700 md:hidden"></i>
+
+                <!-- 단계 2 -->
+                <div class="flex-1 text-center bg-gray-800/50 p-8 rounded-2xl border border-gray-700 hover:border-green-500/50 transition w-full">
+                    <div class="w-16 h-16 bg-green-500 text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-6 shadow-lg shadow-green-500/20">2</div>
+                    <h3 class="text-xl font-bold mb-3 text-gray-100">대기열 추가</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">프로그램에 링크를 붙여넣고<br>원하는 화질과 포맷을 선택합니다.</p>
+                </div>
+
+                <i class="fa-solid fa-arrow-right text-3xl text-gray-700 hidden md:block"></i>
+                <i class="fa-solid fa-arrow-down text-3xl text-gray-700 md:hidden"></i>
+
+                <!-- 단계 3 -->
+                <div class="flex-1 text-center bg-gray-800/50 p-8 rounded-2xl border border-gray-700 hover:border-purple-500/50 transition w-full">
+                    <div class="w-16 h-16 bg-purple-500 text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-6 shadow-lg shadow-purple-500/20">3</div>
+                    <h3 class="text-xl font-bold mb-3 text-gray-100">다운로드 시작</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">다운로드 시작 버튼을 누르면<br>내 PC로 평생 소장 완료!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- 주요 기능 섹션 -->
-    <section id="features" class="py-24 bg-gray-900/40 border-y border-gray-800">
+    <section id="features" class="py-24">
         <div class="container mx-auto px-6">
             <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-extrabold mb-4">직관적이고 강력한 기능들</h2>
+                <h2 class="text-3xl md:text-4xl font-extrabold mb-4">강력한 기능들</h2>
                 <p class="text-gray-400">개발자가 직접 쓰려고 만든, 꼭 필요한 핵심 기능만 담았습니다.</p>
             </div>
             
@@ -115,8 +156,8 @@
                     <div class="w-14 h-14 bg-green-500/10 text-green-400 rounded-xl flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition duration-300">
                         <i class="fa-solid fa-scissors"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-3 text-gray-100">원하는 구간만 자르기 (클립)</h3>
-                    <p class="text-gray-400 leading-relaxed text-sm">수 시간짜리 영상 전체를 받을 필요 없습니다. 원하는 하이라이트 시간대만 입력하면 그 부분만 잘라서 저장합니다.</p>
+                    <h3 class="text-xl font-bold mb-3 text-gray-100">원하는 구간만 자르기</h3>
+                    <p class="text-gray-400 leading-relaxed text-sm">수 시간짜리 영상 전체를 받을 필요 없이, 원하는 하이라이트 시간대만 입력하면 그 부분만 잘라서 저장합니다.</p>
                 </div>
 
                 <!-- 기능 3 -->
@@ -124,7 +165,7 @@
                     <div class="w-14 h-14 bg-purple-500/10 text-purple-400 rounded-xl flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition duration-300">
                         <i class="fa-solid fa-image"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-3 text-gray-100">메타데이터 & 썸네일 자동 삽입</h3>
+                    <h3 class="text-xl font-bold mb-3 text-gray-100">메타데이터 & 썸네일</h3>
                     <p class="text-gray-400 leading-relaxed text-sm">다운로드된 영상 파일 내부에 치지직 원본 썸네일 이미지와 방송 제목, 스트리머 정보를 영구적으로 박아넣습니다.</p>
                 </div>
 
@@ -142,7 +183,7 @@
                     <div class="w-14 h-14 bg-red-500/10 text-red-400 rounded-xl flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition duration-300">
                         <i class="fa-solid fa-film"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-3 text-gray-100">1080p 최고 화질 보장</h3>
+                    <h3 class="text-xl font-bold mb-3 text-gray-100">최고 화질 보장</h3>
                     <p class="text-gray-400 leading-relaxed text-sm">원본 스트림을 손실 없이 추출하여 1080p 60fps 최고 화질로 저장하며, MP4 및 MKV 포맷 변환을 완벽 지원합니다.</p>
                 </div>
 
@@ -154,6 +195,61 @@
                     <h3 class="text-xl font-bold mb-3 text-gray-100">개인 환경 설정 저장</h3>
                     <p class="text-gray-400 leading-relaxed text-sm">자주 사용하는 저장 경로, 화질 옵션, 브라우저 쿠키 등의 개인 설정을 기억해두어 켤 때마다 다시 맞출 필요가 없습니다.</p>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ & 주의사항 섹션 -->
+    <section id="faq" class="py-24 bg-gray-900/50 border-y border-gray-800">
+        <div class="container mx-auto px-6 max-w-3xl">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-extrabold mb-4">자주 묻는 질문 (FAQ)</h2>
+                <p class="text-gray-400">프로그램 사용 전 꼭 읽어주세요!</p>
+            </div>
+            
+            <div class="space-y-4">
+                <!-- 질문 1 (필수) -->
+                <details class="group bg-gray-800/80 rounded-xl border border-gray-700 [&_summary::-webkit-details-marker]:hidden open:border-blue-500/50 transition duration-300" open>
+                    <summary class="flex justify-between items-center font-bold cursor-pointer list-none p-5 text-lg text-gray-100 hover:text-blue-400 transition">
+                        <div class="flex items-center gap-3">
+                            <i class="fa-solid fa-shield-halved text-red-500"></i>
+                            <span>실행 시 '바이러스 위험'이나 'SmartScreen 차단'이 뜹니다.</span>
+                        </div>
+                        <span class="transition group-open:rotate-180 text-gray-500"><i class="fa-solid fa-chevron-down"></i></span>
+                    </summary>
+                    <div class="text-gray-400 mt-2 p-5 pt-0 border-t border-gray-700/50 leading-relaxed text-sm">
+                        <p>파이썬 코드를 윈도우 단일 실행 파일(.exe)로 변환해 주는 <code>PyInstaller</code>의 고질적인 특성상, 윈도우 디펜더(Windows Defender) 등 일부 백신 프로그램이 이를 <strong>알려지지 않은 프로그램(오진)</strong>으로 인식하여 실행을 차단하는 현상입니다.</p>
+                        <p class="mt-3">안심하세요! 본 프로그램은 어떠한 악성코드도 포함하고 있지 않으며, <a href="https://github.com/sunglogbag81/Chzzk-VOD-downloader" class="text-blue-400 hover:underline font-semibold" target="_blank">GitHub에 모든 오픈소스 코드가 투명하게 공개</a>되어 있습니다. 차단 창이 뜨면 <strong>'추가 정보' → '실행'</strong>을 눌러주시거나 백신 예외 항목으로 등록해 주시면 정상 작동합니다.</p>
+                    </div>
+                </details>
+
+                <!-- 질문 2 -->
+                <details class="group bg-gray-800/80 rounded-xl border border-gray-700 [&_summary::-webkit-details-marker]:hidden open:border-blue-500/50 transition duration-300">
+                    <summary class="flex justify-between items-center font-bold cursor-pointer list-none p-5 text-lg text-gray-100 hover:text-blue-400 transition">
+                        <div class="flex items-center gap-3">
+                            <i class="fa-solid fa-ban text-gray-400"></i>
+                            <span>치지직 '클립(Clip)' 영상은 다운로드할 수 없나요?</span>
+                        </div>
+                        <span class="transition group-open:rotate-180 text-gray-500"><i class="fa-solid fa-chevron-down"></i></span>
+                    </summary>
+                    <div class="text-gray-400 mt-2 p-5 pt-0 border-t border-gray-700/50 leading-relaxed text-sm">
+                        <p>현재 치지직 측의 클립 전용 API 구조 변경 및 봇 방어벽(401 Unauthorized 등) 강화로 인해 <strong>클립 다운로드는 공식적으로 지원하지 않습니다.</strong> 일반 VOD 다시보기 영상 및 스트리머 채널 주소 위주로 사용해 주시기 바랍니다.</p>
+                    </div>
+                </details>
+
+                <!-- 질문 3 -->
+                <details class="group bg-gray-800/80 rounded-xl border border-gray-700 [&_summary::-webkit-details-marker]:hidden open:border-blue-500/50 transition duration-300">
+                    <summary class="flex justify-between items-center font-bold cursor-pointer list-none p-5 text-lg text-gray-100 hover:text-blue-400 transition">
+                        <div class="flex items-center gap-3">
+                            <i class="fa-solid fa-cookie-bite text-yellow-600"></i>
+                            <span>쿠키(Cookies) 설정은 언제 사용하나요?</span>
+                        </div>
+                        <span class="transition group-open:rotate-180 text-gray-500"><i class="fa-solid fa-chevron-down"></i></span>
+                    </summary>
+                    <div class="text-gray-400 mt-2 p-5 pt-0 border-t border-gray-700/50 leading-relaxed text-sm">
+                        <p><strong>성인 인증(19+)</strong>이 필요한 VOD나 <strong>채널 멤버십(구독자) 전용 영상</strong>을 다운로드할 때 필요합니다. 평소 치지직을 시청하시는 브라우저(예: Chrome)를 프로그램 내 옵션에서 선택해 두시면, 다운로더가 해당 브라우저의 로그인 상태(쿠키)를 빌려와 안전하게 권한을 우회하여 다운로드합니다.</p>
+                    </div>
+                </details>
             </div>
         </div>
     </section>
@@ -202,7 +298,7 @@
                     <ul class="space-y-3 text-gray-400 text-sm">
                         <li class="flex items-start gap-2">
                             <i class="fa-solid fa-wrench text-yellow-500 mt-1"></i>
-                            <span>자동 업데이트 과정에서 가끔씩 발생하던 <strong>'Failed to load Python DLL (_MEI)'</strong> 오류를 완벽하게 해결했습니다. (프로세스 종료 및 대기 시간 강제 조정 적용)</span>
+                            <span>자동 업데이트 과정에서 가끔씩 발생하던 <strong>'Failed to load Python DLL (_MEI)'</strong> 오류를 완벽하게 해결했습니다.</span>
                         </li>
                         <li class="flex items-start gap-2">
                             <i class="fa-solid fa-wrench text-yellow-500 mt-1"></i>
@@ -219,11 +315,11 @@
                     <ul class="space-y-3 text-gray-400 text-sm">
                         <li class="flex items-start gap-2">
                             <i class="fa-solid fa-check text-green-500 mt-1"></i>
-                            <span><strong>채널 일괄 다운로드:</strong> 단일 영상 주소뿐만 아니라 채널 주소 입력 시, 해당 채널의 모든 VOD를 50개 단위로 자동 페이징하여 대기열에 담아주는 기능을 추가했습니다.</span>
+                            <span><strong>채널 일괄 다운로드:</strong> 채널 주소 입력 시, 해당 채널의 모든 VOD를 자동 페이징하여 대기열에 담아주는 기능을 추가했습니다.</span>
                         </li>
                         <li class="flex items-start gap-2">
                             <i class="fa-solid fa-check text-green-500 mt-1"></i>
-                            <span><strong>자체 자동 업데이트 로직:</strong> 앱 실행 시 GitHub API를 통해 최신 버전을 감지하고, .bat 스크립트 기반으로 자기 자신을 교체하는 기능을 탑재했습니다.</span>
+                            <span><strong>자체 자동 업데이트 로직:</strong> 앱 실행 시 GitHub API를 통해 최신 버전을 감지하고, 스스로 교체하는 기능을 탑재했습니다.</span>
                         </li>
                     </ul>
                 </div>
@@ -236,15 +332,7 @@
                     <ul class="space-y-3 text-gray-400 text-sm">
                         <li class="flex items-start gap-2">
                             <i class="fa-solid fa-rocket text-purple-500 mt-1"></i>
-                            <span>치지직 VOD 다운로더 첫 정식 배포</span>
-                        </li>
-                        <li class="flex items-start gap-2">
-                            <i class="fa-solid fa-rocket text-purple-500 mt-1"></i>
-                            <span>CustomTkinter 기반의 다크 모드 GUI 구현</span>
-                        </li>
-                        <li class="flex items-start gap-2">
-                            <i class="fa-solid fa-rocket text-purple-500 mt-1"></i>
-                            <span>yt-dlp 및 ffmpeg 내장 단일 실행 파일 구성 완료</span>
+                            <span>치지직 VOD 다운로더 첫 정식 배포 (CustomTkinter 기반 GUI)</span>
                         </li>
                     </ul>
                 </div>
@@ -254,14 +342,14 @@
     </section>
 
     <!-- 푸터 -->
-    <footer class="bg-gray-950 border-t border-gray-800 mt-12 py-10">
+    <footer class="bg-gray-950 border-t border-gray-800 py-10">
         <div class="container mx-auto px-6 text-center">
-            <div class="text-gray-500 mb-6 text-sm">
-                <p class="mb-1">본 프로그램은 네이버 치지직(CHZZK)의 공식 프로그램이 아닙니다.</p>
+            <div class="text-gray-500 mb-6 text-sm leading-relaxed">
+                <p>본 프로그램은 네이버 치지직(CHZZK)의 공식 프로그램이 아닙니다.</p>
                 <p>다운로드한 영상의 무단 재배포 및 영리적 사용으로 인한 모든 법적 책임은 사용자에게 있습니다.</p>
             </div>
             <div class="flex justify-center items-center gap-6 mb-6">
-                <a href="https://github.com/sunglogbag81" target="_blank" class="text-gray-400 hover:text-white transition text-2xl">
+                <a href="https://github.com/sunglogbag81" target="_blank" class="text-gray-400 hover:text-white transition text-2xl" title="개발자 GitHub">
                     <i class="fa-brands fa-github"></i>
                 </a>
             </div>
