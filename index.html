@@ -79,7 +79,10 @@
             50% { transform: translateY(-12px); }
         }
 
-        .custom-scrollbar::-webkit-scrollbar { width: 6px; md:width: 8px; }
+        .custom-scrollbar::-webkit-scrollbar { width: 6px; }
+        @media (min-width: 768px) {
+            .custom-scrollbar::-webkit-scrollbar { width: 8px; }
+        }
         .custom-scrollbar::-webkit-scrollbar-track { background: #0f172a; border-radius: 4px; }
         .custom-scrollbar::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
         .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #475569; }
@@ -130,9 +133,6 @@
         
         <div class="hidden lg:flex gap-8 text-sm font-bold text-slate-400">
             <a href="#how-to-use" class="hover:text-white transition">사용 방법</a>
-            <a href="#features" class="hover:text-white transition">핵심 기능</a>
-            <a href="#specs" class="hover:text-white transition">요구 사양</a>
-            <a href="#faq" class="hover:text-white transition">FAQ</a>
             <a href="#changelog" class="hover:text-white transition">패치노트</a>
         </div>
         
@@ -150,8 +150,6 @@
             <i class="fa-solid fa-xmark"></i>
         </button>
         <a href="#how-to-use" class="mobile-link text-slate-300 hover:text-white py-2">사용 방법</a>
-        <a href="#features" class="mobile-link text-slate-300 hover:text-white py-2">주요 기능</a>
-        <a href="#faq" class="mobile-link text-slate-300 hover:text-white py-2">자주 묻는 질문</a>
         <a href="#changelog" class="mobile-link text-slate-300 hover:text-white py-2">패치노트</a>
         <a href="https://github.com/sunglogbag81/Chzzk-VOD-downloader" class="mobile-link text-[#00D287] mt-4 py-2"><i class="fa-brands fa-github mr-2"></i>GitHub 방문</a>
     </div>
@@ -187,10 +185,12 @@
             </a>
         </div>
 
-        <!-- v1.2.0 모던 플랫 UI 목업 -->
-        <div class="max-w-4xl mx-auto relative float-anim reveal" style="transition-delay: 400ms;">
-            <div class="absolute -inset-1 bg-gradient-to-r from-[#00D287] to-blue-500 rounded-xl md:rounded-2xl blur opacity-20"></div>
-            <div class="relative bg-[#18181B] rounded-xl md:rounded-2xl border border-slate-700 shadow-2xl overflow-hidden text-left ring-1 ring-white/10">
+        <!-- ============================================== -->
+        <!-- 🖥️ PC용 UI 목업 (가로 2단 분할) -->
+        <!-- ============================================== -->
+        <div class="max-w-4xl mx-auto relative float-anim reveal hidden md:block" style="transition-delay: 400ms;">
+            <div class="absolute -inset-1 bg-gradient-to-r from-[#00D287] to-blue-500 rounded-2xl blur opacity-20"></div>
+            <div class="relative bg-[#18181B] rounded-2xl border border-slate-700 shadow-2xl overflow-hidden text-left ring-1 ring-white/10">
                 <!-- 타이틀바 -->
                 <div class="bg-[#18181B] px-4 py-3 flex items-center gap-2">
                     <span class="text-sm font-bold text-white tracking-wider flex items-center gap-2">
@@ -198,30 +198,30 @@
                     </span>
                 </div>
                 <!-- 앱 바디 -->
-                <div class="p-4 md:p-6 grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 bg-[#18181B]">
+                <div class="p-6 grid grid-cols-2 gap-6 bg-[#18181B]">
                     <!-- 왼쪽 패널 -->
                     <div class="space-y-4">
                         <div class="bg-[#27272A] rounded-lg p-4 border border-[#3F3F46]">
                             <div class="text-sm text-white font-bold mb-3">동영상 URL</div>
                             <div class="flex gap-2">
                                 <div class="h-10 bg-[#1F1F22] rounded border border-[#3F3F46] w-full flex items-center px-3">
-                                    <span class="text-slate-300 text-xs md:text-sm truncate">https://chzzk.naver.com/video/...</span>
+                                    <span class="text-slate-300 text-sm truncate">https://chzzk.naver.com/video/...</span>
                                 </div>
-                                <div class="h-10 w-20 bg-[#3F3F46] rounded flex items-center justify-center text-xs font-bold text-white shrink-0">목록에 추가</div>
+                                <div class="h-10 w-20 bg-[#3F3F46] rounded flex items-center justify-center text-xs font-bold text-white shrink-0 cursor-pointer">목록에 추가</div>
                             </div>
                         </div>
                         <div class="bg-[#27272A] rounded-lg border border-[#3F3F46] p-4 flex flex-col h-48">
                             <div class="flex justify-between items-center mb-3">
                                 <span class="text-sm text-white font-bold">대기열 (2)</span>
-                                <span class="text-xs text-slate-400">전체 삭제</span>
+                                <span class="text-xs text-slate-400 cursor-pointer">전체 삭제</span>
                             </div>
                             <div class="space-y-2">
                                 <div class="bg-[#1F1F22] p-2.5 rounded-md flex justify-between items-center border border-[#3F3F46]">
                                     <span class="text-xs text-slate-200 truncate pr-2">방송 다시보기 원본 파일...</span>
                                     <div class="flex gap-1">
-                                        <span class="text-slate-400 text-xs px-1">↑</span>
-                                        <span class="text-slate-400 text-xs px-1">↓</span>
-                                        <span class="text-red-400 text-xs px-1">✕</span>
+                                        <span class="text-slate-400 text-xs px-1 cursor-pointer">↑</span>
+                                        <span class="text-slate-400 text-xs px-1 cursor-pointer">↓</span>
+                                        <span class="text-red-400 text-xs px-1 cursor-pointer">✕</span>
                                     </div>
                                 </div>
                             </div>
@@ -233,32 +233,96 @@
                             <span class="text-sm text-white font-bold block">다운로드 옵션</span>
                             <div class="flex items-center gap-3">
                                 <span class="text-xs text-slate-400 w-16">저장 폴더</span>
-                                <div class="h-9 w-full bg-[#1F1F22] rounded border border-[#3F3F46] flex items-center px-3 text-xs text-slate-300 truncate">C:\Downloads</div>
+                                <div class="h-9 w-full bg-[#1F1F22] rounded border border-[#3F3F46] flex items-center px-3 text-xs text-slate-300 truncate">C:Downloads</div>
                             </div>
                             <div class="flex items-center gap-3">
                                 <span class="text-xs text-slate-400 w-16">해상도</span>
-                                <div class="h-9 w-full bg-[#1F1F22] rounded border border-[#3F3F46] flex items-center justify-between px-3 text-xs text-slate-200">
+                                <div class="h-9 w-full bg-[#1F1F22] rounded border border-[#3F3F46] flex items-center justify-between px-3 text-xs text-slate-200 cursor-pointer">
                                     <span>1080p (최고 화질)</span> <i class="fa-solid fa-chevron-down text-slate-500"></i>
                                 </div>
                             </div>
                             <div class="grid grid-cols-2 gap-4 mt-2">
-                                <div class="flex items-center gap-2"><div class="w-8 h-4 bg-[#00D287] rounded-full relative"><div class="absolute right-1 top-0.5 w-3 h-3 bg-white rounded-full"></div></div><span class="text-xs text-slate-300">메타데이터</span></div>
-                                <div class="flex items-center gap-2"><div class="w-8 h-4 bg-[#3F3F46] rounded-full relative"><div class="absolute left-1 top-0.5 w-3 h-3 bg-slate-400 rounded-full"></div></div><span class="text-xs text-slate-300">PC 종료</span></div>
+                                <div class="flex items-center gap-2 cursor-pointer"><div class="w-8 h-4 bg-[#00D287] rounded-full relative"><div class="absolute right-1 top-0.5 w-3 h-3 bg-white rounded-full"></div></div><span class="text-xs text-slate-300">메타데이터</span></div>
+                                <div class="flex items-center gap-2 cursor-pointer"><div class="w-8 h-4 bg-[#3F3F46] rounded-full relative"><div class="absolute left-1 top-0.5 w-3 h-3 bg-slate-400 rounded-full"></div></div><span class="text-xs text-slate-300">PC 종료</span></div>
                             </div>
                         </div>
                         <div class="bg-[#27272A] rounded-lg border border-[#3F3F46] p-4 flex flex-col justify-center">
                             <div class="flex justify-between text-xs mb-2 font-bold text-[#00D287]">
                                 <span>다운로드 중... 68.5% (15.2MiB/s, 남은 시간: 00:03)</span>
                             </div>
-                            <div class="h-2 w-full bg-[#18181B] rounded-full overflow-hidden mb-4">
+                            <div class="h-2 w-full bg-[#18181B] rounded-full overflow-hidden mb-4 border border-[#3F3F46]/50">
                                 <div class="h-full bg-[#00D287] w-[68.5%] rounded-full shadow-[0_0_8px_#00D287]"></div>
                             </div>
                             <div class="flex gap-2">
-                                <div class="h-10 w-full bg-[#00D287] rounded flex items-center justify-center text-xs font-bold text-black cursor-pointer">다운로드 시작</div>
-                                <div class="h-10 w-16 bg-[#DC2626] rounded flex items-center justify-center text-xs font-bold text-white opacity-50">정지</div>
-                                <div class="h-10 w-20 bg-[#3F3F46] rounded flex items-center justify-center text-xs font-bold text-white">폴더 열기</div>
+                                <div class="h-10 w-full bg-[#00D287] rounded flex items-center justify-center text-xs font-bold text-black cursor-pointer hover:bg-[#00B373] transition">다운로드 시작</div>
+                                <div class="h-10 w-16 bg-[#DC2626] rounded flex items-center justify-center text-xs font-bold text-white opacity-50 cursor-not-allowed">정지</div>
+                                <div class="h-10 w-20 bg-[#3F3F46] rounded flex items-center justify-center text-xs font-bold text-white cursor-pointer hover:bg-[#52525B] transition">폴더 열기</div>
                             </div>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ============================================== -->
+        <!-- 📱 모바일용 UI 목업 (세로 1단 스택) -->
+        <!-- ============================================== -->
+        <div class="w-full relative float-anim reveal md:hidden" style="transition-delay: 400ms;">
+            <div class="absolute -inset-1 bg-gradient-to-r from-[#00D287] to-blue-500 rounded-xl blur opacity-20"></div>
+            <div class="relative bg-[#18181B] rounded-xl border border-slate-700 shadow-2xl overflow-hidden text-left ring-1 ring-white/10">
+                <!-- 타이틀바 -->
+                <div class="bg-[#18181B] px-3 py-2.5 flex items-center gap-2 border-b border-[#3F3F46]">
+                    <span class="text-xs font-bold text-white tracking-wider flex items-center gap-2">
+                        CHZZK VOD Downloader <span class="text-slate-500 font-mono text-[10px]">v1.2.0</span>
+                    </span>
+                </div>
+                <!-- 앱 바디 (1열) -->
+                <div class="p-3 space-y-3 bg-[#18181B]">
+                    <!-- URL 입력 -->
+                    <div class="bg-[#27272A] rounded-lg p-3 border border-[#3F3F46]">
+                        <div class="text-xs text-white font-bold mb-2">동영상 URL</div>
+                        <div class="flex flex-col gap-2">
+                            <div class="h-9 bg-[#1F1F22] rounded border border-[#3F3F46] w-full flex items-center px-2">
+                                <span class="text-slate-300 text-[11px] truncate">https://chzzk.naver.com/video/...</span>
+                            </div>
+                            <div class="h-9 w-full bg-[#3F3F46] rounded flex items-center justify-center text-[11px] font-bold text-white cursor-pointer">목록에 추가</div>
+                        </div>
+                    </div>
+
+                    <!-- 대기열 -->
+                    <div class="bg-[#27272A] rounded-lg border border-[#3F3F46] p-3 flex flex-col">
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="text-xs text-white font-bold">대기열 (2)</span>
+                        </div>
+                        <div class="bg-[#1F1F22] p-2 rounded-md flex justify-between items-center border border-[#3F3F46]">
+                            <span class="text-[11px] text-slate-200 truncate pr-2">방송 다시보기 원본...</span>
+                            <span class="text-red-400 text-xs px-1 cursor-pointer">✕</span>
+                        </div>
+                    </div>
+
+                    <!-- 옵션 (간소화) -->
+                    <div class="bg-[#27272A] rounded-lg border border-[#3F3F46] p-3 space-y-3">
+                        <div class="flex items-center justify-between">
+                            <span class="text-[11px] text-slate-400">해상도</span>
+                            <div class="h-8 w-3/5 bg-[#1F1F22] rounded border border-[#3F3F46] flex items-center justify-between px-2 text-[11px] text-slate-200 cursor-pointer">
+                                <span>1080p (최고 화질)</span> <i class="fa-solid fa-chevron-down text-slate-500 text-[10px]"></i>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-2 cursor-pointer pt-1">
+                            <div class="w-7 h-3.5 bg-[#00D287] rounded-full relative"><div class="absolute right-0.5 top-0.5 w-2.5 h-2.5 bg-white rounded-full"></div></div>
+                            <span class="text-[11px] text-slate-300">메타데이터 저장</span>
+                        </div>
+                    </div>
+
+                    <!-- 제어부 -->
+                    <div class="bg-[#27272A] rounded-lg border border-[#3F3F46] p-3 flex flex-col">
+                        <div class="flex justify-between text-[10px] mb-1.5 font-bold text-[#00D287]">
+                            <span>다운로드 중... 68.5%</span>
+                        </div>
+                        <div class="h-1.5 w-full bg-[#18181B] rounded-full overflow-hidden mb-3 border border-[#3F3F46]/50">
+                            <div class="h-full bg-[#00D287] w-[68.5%] rounded-full shadow-[0_0_8px_#00D287]"></div>
+                        </div>
+                        <div class="h-10 w-full bg-[#00D287] rounded flex items-center justify-center text-xs font-bold text-black cursor-pointer shadow-sm">다운로드 시작</div>
                     </div>
                 </div>
             </div>
@@ -283,8 +347,6 @@
         </div>
     </div>
 
-    <!-- (이하 사용 방법, 기능, 요구 사양, FAQ 섹션은 동일하게 유지) -->
-    <!-- ... 기존 코드와 동일 ... -->
     <section id="how-to-use" class="py-16 md:py-24 relative z-10">
         <div class="container mx-auto px-5 md:px-6 max-w-5xl">
             <div class="text-center mb-12 md:mb-16 reveal">
@@ -330,7 +392,7 @@
         </div>
     </section>
 
-    <!-- 패치노트 섹션 (v1.2.0 추가 반영) -->
+    <!-- 패치노트 섹션 -->
     <section id="changelog" class="py-16 md:py-24 bg-slate-900/30 border-y border-white/5 relative z-10">
         <div class="container mx-auto px-5 md:px-6 max-w-4xl reveal">
             <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-3 mb-8 md:mb-10 border-b border-slate-800 pb-4 md:pb-6">
@@ -342,7 +404,6 @@
             </div>
             
             <div class="glass-card rounded-2xl p-5 md:p-10 h-[450px] overflow-y-auto custom-scrollbar relative">
-                <!-- 타임라인 중앙선 -->
                 <div class="absolute left-[33px] md:left-[54px] top-10 bottom-10 w-0.5 bg-slate-700/50"></div>
 
                 <!-- v1.2.0 -->
@@ -350,7 +411,7 @@
                     <div class="absolute w-4 h-4 md:w-5 md:h-5 bg-[#00D287] rounded-full left-[2px] md:left-[18px] top-1 md:top-1.5 shadow-[0_0_15px_rgba(0,210,135,0.8)] border-4 border-[#161f32] z-10"></div>
                     <h3 class="text-xl md:text-2xl font-bold text-white mb-2 flex items-center gap-2 md:gap-3 flex-wrap">
                         v1.2.0 
-                        <span class="text-[10px] md:text-xs font-bold text-black border border-[#00D287]/30 px-2 py-0.5 rounded bg-[#00D287]">UI 리뉴얼 및 편의성 대폭발</span>
+                        <span class="text-[10px] md:text-xs font-bold text-black border border-[#00D287]/30 px-2 py-0.5 rounded bg-[#00D287]">UI 리뉴얼 및 편의성 강화</span>
                     </h3>
                     <p class="text-slate-500 text-[10px] md:text-xs mb-3 md:mb-4 font-mono">2026-02-23</p>
                     <div class="bg-slate-800/40 rounded-xl p-4 md:p-5 border border-slate-700/50">
@@ -361,19 +422,15 @@
                             </li>
                             <li class="flex items-start gap-2 md:gap-3">
                                 <div class="bg-blue-500/20 p-1.5 md:p-2 rounded shrink-0 mt-0.5"><i class="fa-solid fa-palette text-blue-400 w-3 md:w-4 text-center"></i></div>
-                                <div><strong class="text-blue-300 block mb-0.5">치지직 테마 플랫 UI 적용</strong>AI가 만든듯한 디자인에서 벗어나, 상용 앱 수준의 깔끔한 모던 다크 테마(Zinc)로 개편했습니다.</div>
+                                <div><strong class="text-blue-300 block mb-0.5">치지직 테마 플랫 UI 적용</strong>깔끔한 모던 다크 테마(Zinc)로 디자인을 개편하고 불필요한 로그창을 제거했습니다.</div>
                             </li>
                             <li class="flex items-start gap-2 md:gap-3">
                                 <div class="bg-purple-500/20 p-1.5 md:p-2 rounded shrink-0 mt-0.5"><i class="fa-solid fa-folder-open text-purple-400 w-3 md:w-4 text-center"></i></div>
-                                <div><strong class="text-purple-300 block mb-0.5">폴더 열기 및 순서 변경</strong>대기열의 다운로드 순서를 화살표로 바꾸고, 작업 완료 후 버튼 하나로 즉시 저장 폴더를 엽니다.</div>
+                                <div><strong class="text-purple-300 block mb-0.5">폴더 열기 및 순서 변경</strong>대기열의 다운로드 순서를 변경하고, 작업 완료 후 즉시 저장 폴더를 열 수 있습니다.</div>
                             </li>
                             <li class="flex items-start gap-2 md:gap-3">
                                 <div class="bg-red-500/20 p-1.5 md:p-2 rounded shrink-0 mt-0.5"><i class="fa-solid fa-power-off text-red-400 w-3 md:w-4 text-center"></i></div>
-                                <div><strong class="text-red-300 block mb-0.5">작업 완료 후 PC 자동 종료</strong>자러 가기 전 큐를 잔뜩 걸어두세요. 모두 완료되면 알아서 컴퓨터가 종료됩니다.</div>
-                            </li>
-                            <li class="flex items-start gap-2 md:gap-3">
-                                <div class="bg-yellow-500/20 p-1.5 md:p-2 rounded shrink-0 mt-0.5"><i class="fa-solid fa-file-signature text-yellow-400 w-3 md:w-4 text-center"></i></div>
-                                <div><strong class="text-yellow-300 block mb-0.5">파일명 형식 및 썸네일 별도 저장</strong>파일명에 채널명이나 업로드 날짜를 포함할 수 있고, 썸네일 이미지만 따로 저장할 수 있습니다.</div>
+                                <div><strong class="text-red-300 block mb-0.5">작업 완료 후 PC 자동 종료</strong>큐에 등록된 모든 작업이 완료되면 알아서 컴퓨터를 종료하는 기능을 추가했습니다.</div>
                             </li>
                         </ul>
                     </div>
